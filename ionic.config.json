@@ -1,0 +1,7 @@
+{
+  "name": "userlogin-app",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

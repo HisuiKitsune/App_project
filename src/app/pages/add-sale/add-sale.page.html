@@ -1,0 +1,41 @@
+  <ion-header>
+    <ion-toolbar color="tertiary">
+      <ion-buttons slot="start">
+        <ion-back-button text=""></ion-back-button>
+      </ion-buttons>
+      <ion-title>Add a new sale</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-content color="dark">
+
+    <ion-card color="dark">
+      <ion-card-header>
+        <ion-card-title color="secondary">Sale Information</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-item color="dark">
+          <ion-label position="floating">Product Name</ion-label>
+          <ion-input type="text"></ion-input>
+        </ion-item>
+        <ion-item color="dark">
+          <ion-label position="floating">Brand</ion-label>
+          <ion-input type="text"></ion-input>
+        </ion-item>
+        <ion-item color="dark">
+          <ion-label position="floating">Date Sold</ion-label>
+          <ion-input type="Date"></ion-input>
+        </ion-item>
+        <ion-item color="dark">
+          <ion-label position="floating">Notes</ion-label>
+          <ion-input type="text"></ion-input>
+        </ion-item>
+        <ion-item color="dark">
+          <ion-label position="floating">Price</ion-label>
+          <ion-input type="money"></ion-input>
+        </ion-item>
+      </ion-card-content>
+    </ion-card>
+    <ion-button size="full" color="tertiary" (click)="addNewSaleButton()">Register</ion-button>
+
+  </ion-content>

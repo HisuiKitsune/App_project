@@ -1,0 +1,17 @@
+ion-content {
+  --background: var(--ion-color-dark);
+}
+
+ion-card {
+  ion-card-subtitle {
+    text-transform: uppercase;
+    font-weight: bold;
+  }
+  p {
+    white-space: normal;
+  }
+}
+
+ion-label.money {
+  font-weight: bold;
+}

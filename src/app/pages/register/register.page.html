@@ -1,0 +1,99 @@
+<ion-header>
+  <ion-toolbar color="tertiary">
+    <ion-title>User registration</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form [formGroup]="registerForm.getForm()">
+  <ion-card color="dark">
+    <ion-card-header>
+      <ion-card-title color="secondary">Create a Login</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-item color="dark">
+        <ion-label position="floating">Email</ion-label>
+        <ion-input formControlName="email" type="email"></ion-input>
+      </ion-item>
+      <app-error-message [field]="$any(registerForm.getForm()).get('email')" error="required" message="Email is required" ></app-error-message>
+      <app-error-message [field]="$any(registerForm.getForm()).get('email')" error="email" message="Email is invalid" ></app-error-message>
+      <ion-item color="dark">
+        <ion-label position="floating">Password</ion-label>
+        <ion-input formControlName="password" type="password"></ion-input>
+      </ion-item>
+      <app-error-message [field]="$any(registerForm.getForm()).get('password')" error="required" message="Password is required" ></app-error-message>
+      <app-error-message [field]="$any(registerForm.getForm()).get('password')" error="minlength" message="Minimum of 6 characters" ></app-error-message>
+      <ion-item color="dark">
+        <ion-label position="floating">Confirm Password</ion-label>
+        <ion-input formControlName="repeatPassword" type="password"></ion-input>
+      </ion-item>
+      <app-error-message [field]="$any(registerForm.getForm()).get('repeatPassword')" error="minlength" message="Minimum of 6 characters" ></app-error-message>
+      <app-error-message [field]="$any(registerForm.getForm()).get('repeatPassword')" error="isntMatching" message="Passwords must match" ></app-error-message>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card color="dark">
+    <ion-card-header>
+      <ion-card-title color="secondary">User Information</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-item color="dark">
+        <ion-label position="floating">CPF</ion-label>
+        <ion-input formControlName="cpf" type="text"></ion-input>
+      </ion-item>
+      <app-error-message [field]="$any(registerForm.getForm()).get('cpf')" error="required" message="CPF is required" ></app-error-message>
+      <ion-item color="dark">
+        <ion-label position="floating">Name</ion-label>
+        <ion-input formControlName="name" type="text"></ion-input>
+      </ion-item>
+      <app-error-message [field]="$any(registerForm.getForm()).get('name')" error="required" message="Name is required" ></app-error-message>
+      <ion-item color="dark">
+        <ion-label position="floating">Phone</ion-label>
+        <ion-input formControlName="phone" type="text"></ion-input>
+      </ion-item>
+      <app-error-message [field]="$any(registerForm.getForm()).get('phone')" error="required" message="Phone is required" ></app-error-message>
+    </ion-card-content>
+
+  </ion-card>
+
+  <ion-card color="dark">
+    <ion-card-header>
+      <ion-card-title color="secondary">Address Information</ion-card-title>
+    </ion-card-header>
+    <ion-card-content formGroupName="address" >
+      <ion-item color="dark">
+        <ion-label position="floating">Street</ion-label>
+        <ion-input formControlName="street" type="text" #autocomplete ></ion-input>
+      </ion-item>
+      <app-error-message [field]="$any(registerForm.getForm()).get('address').get('street')" error="required" message="Street is required" ></app-error-message>
+      <ion-item color="dark">
+        <ion-label position="floating">City</ion-label>
+        <ion-input formControlName="city" type="text"></ion-input>
+      </ion-item>
+      <app-error-message [field]="$any(registerForm.getForm()).get('address').get('city')" error="required" message="City is required" ></app-error-message>
+      <ion-item color="dark">
+        <ion-label position="floating">State</ion-label>
+        <ion-input formControlName="state" type="text" ></ion-input>
+      </ion-item>
+      <app-error-message [field]="$any(registerForm.getForm()).get('address').get('state')" error="required" message="State is required" ></app-error-message>
+      <ion-item color="dark">
+        <ion-label position="floating">District</ion-label>
+        <ion-input formControlName="dist" type="text" ></ion-input>
+      </ion-item>
+      <app-error-message [field]="$any(registerForm.getForm()).get('address').get('dist')" error="required" message="District is required" ></app-error-message>
+      <ion-item color="dark">
+        <ion-label position="floating">Postal-Code</ion-label>
+        <ion-input formControlName="postalcode" type="text"></ion-input>
+      </ion-item>
+      <app-error-message [field]="$any(registerForm.getForm()).get('address').get('postalcode')" error="required" message="Postal-Code is required" ></app-error-message>
+      <ion-item color="dark">
+        <ion-label position="floating">Number</ion-label>
+        <ion-input formControlName="number" type="number" ></ion-input>
+      </ion-item>
+      <app-error-message [field]="$any(registerForm.getForm()).get('address').get('number')" error="required" message="Number is required" ></app-error-message>
+    </ion-card-content>
+  </ion-card>
+  <ion-button size="full" color="tertiary" (click)="register()">Register</ion-button>
+</form>
+</ion-content>
+

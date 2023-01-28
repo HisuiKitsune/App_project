@@ -1,0 +1,26 @@
+
+<ion-card color="dark">
+  <ion-card-header color="dark" *ngIf="hasHeader">
+    <ion-card-subtitle style="color:gray;">Last sell</ion-card-subtitle>
+  </ion-card-header>
+  <ion-card-content color="dark">
+    <ion-item color="dark" lines="nones">
+      <ion-icon name="checkmark-circle-outline" slot="start" color="success"></ion-icon>
+      <ion-label>
+        {{product}}
+        <p>{{brand}}</p>
+      </ion-label>
+    </ion-item>
+    <ion-item color="dark" lines="none">
+      <ion-label>
+        <p>Sold at {{soldAt}}</p>
+        <p>Notes: {{notes}}</p>
+      </ion-label>
+    </ion-item>
+    <ion-item color="dark" lines="none">
+      <ion-icon name="cash" slot="start" color="success"></ion-icon>
+      <ion-label class="money" color="success">$ {{price}}</ion-label>
+    </ion-item>
+    <ion-button *ngIf="hasFooter" color="primary" fill="clear" size="full" (click)="goToSalesDetail()">See details</ion-button>
+  </ion-card-content>
+</ion-card>
