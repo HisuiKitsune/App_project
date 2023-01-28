@@ -1,0 +1,32 @@
+ion-toolbar {
+  color: #E7AF32;
+}
+.slide-zoom {
+  // height:200px;
+  height: 100%;
+  // overflow:hidden;
+}
+ion-slides {
+  height: 200px;
+  --bullet-background: black;
+  --bullet-background-active: #E7AF32;
+
+}
+
+ion-item-divider {
+  --background:#FFFAFA ;
+  --color: #E7AF32;
+    border: none;
+  --padding-top: 10px;
+  --padding-bottom: 10px;
+  --padding-start: 10px;
+  --padding-end: 10px;
+  box-shadow: rgba(33, 35, 38, 0.1) 0px 10px 10px -10px;
+
+  ion-label {
+    font-weight: bold;
+    margin-top: 10px;
+    font-family: monospace;
+  }
+}
+

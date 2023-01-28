@@ -1,0 +1,47 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Skate Club</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content color="dark">
+  <div class="slider">
+  <ion-slides  class="slider" loop="true" pager="true" [options]="slideOptions" (ionSlideTouchEnd)="slidesDidLoad(slider)" >
+    <ion-slide>
+      <img src="../../../assets/img/slide1.jpg" />
+    </ion-slide>
+    <ion-slide>
+      <img src="../../../assets/img/slide2.jpg" />
+    </ion-slide>
+    <ion-slide>
+      <img src="../../../assets/img/slide3.jpg" />
+    </ion-slide>
+    <ion-slide>
+      <img src="../../../assets/img/slide4.jpg" />
+    </ion-slide>
+  </ion-slides>
+</div>
+<div>
+  <ion-item-divider>
+    <ion-tab-button>
+    <img src="../../../assets/img/sneakers.png" width="50" height="50">
+    <ion-label>Shoes</ion-label>
+    </ion-tab-button>
+    <ion-tab-button>
+      <img src="../../../assets/img/hood.png" width="50" height="50">
+      <ion-label>Clothes</ion-label>
+      </ion-tab-button>
+      <ion-tab-button>
+        <img src="../../../assets/img/skateboard.png" width="50" height="50">
+        <ion-label>Shapes</ion-label>
+        </ion-tab-button>
+        <ion-tab-button>
+          <img src="../../../assets/img/helmet.png" width="50" height="50">
+          <ion-label>Acessories</ion-label>
+          </ion-tab-button>
+  </ion-item-divider>
+</div>
+</ion-content>
