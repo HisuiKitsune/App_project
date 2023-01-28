@@ -31,4 +31,4 @@ ionic cordova plugin add cordova-plugin-camera
 ```
 
 ### Running Ionic
-`ionic serve`
+- `ionic serve`
