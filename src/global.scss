@@ -25,9 +25,20 @@
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
 
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed&display=swap');
+
+*{
+  font-family: 'Roboto Condensed', sans-serif;
+}
+
 .flex-center{
   display: flex;
   justify-content:center;
   align-items: center;
   height: 100%;
+}
+ion-spinner {
+  width: 40px !important;
+  height: 40px !important;
+  color: #E7AF32;
 }

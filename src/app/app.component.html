@@ -1,11 +1,27 @@
 <ion-app>
   <ion-split-pane contentId="main-content">
-    <ion-menu contentId="main-content" type="overlay">
+    <ion-menu contentId="main-content" type="push">
       <ion-content>
-        <ion-list id="inbox-list">
-          <ion-list-header>Inbox</ion-list-header>
-          <ion-note>hi@ionicframework.com</ion-note>
-
+        <ion-list id="menu">
+          <ion-avatar slot="start">
+            <img src="https://cdn-icons-png.flaticon.com/512/5087/5087579.png" alt="">
+          </ion-avatar>
+          <ion-list-header>User12345</ion-list-header>
+          <ion-note>skateclub@gmail.com</ion-note>
+          <ion-list>
+            <ion-item><ion-icon color="dark" name="person-sharp"></ion-icon><span>Meu perfil</span></ion-item>
+            <ion-item><ion-icon color="dark" name="star"></ion-icon><span>Favoritos</span></ion-item>
+            <ion-item><ion-icon color="dark" name="storefront"></ion-icon><span>Loja</span></ion-item>
+            <ion-item><ion-icon color="dark" name="search-sharp"></ion-icon><span>Buscar produto</span></ion-item>
+            <ion-item><ion-icon color="dark" name="mail"></ion-icon><span>Fale conosco</span></ion-item>
+          </ion-list>
+          <ion-list class="submenu">
+            <ion-item><span>Central de Ajuda</span></ion-item>
+            <ion-item><span>Termos de Serviço</span></ion-item>
+            <ion-item><span>Código de Conduta</span></ion-item>
+            <ion-item><span>Privacidade</span></ion-item>
+            <ion-item color="danger"><ion-icon color="dark" name="log-out-outline"></ion-icon><span>Sair</span></ion-item>
+          </ion-list>
           <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages; let i = index">
           </ion-menu-toggle>
         </ion-list>

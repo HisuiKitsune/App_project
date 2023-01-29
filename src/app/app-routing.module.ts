@@ -1,6 +1,6 @@
 import { AuthGuard } from './guards/auth/auth-guard';
 import { NgModule } from '@angular/core';
-import { PreloadAllModules, RouterModule, Routes, CanLoad } from '@angular/router';
+import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
   {
@@ -40,7 +40,8 @@ const routes: Routes = [
     path: 'add-sale',
     loadChildren: () => import('./pages/add-sale/add-sale.module').then( m => m.AddSalePageModule),
     canMatch: [AuthGuard]
-  },  {
+  },
+  {
     path: 'store-front',
     loadChildren: () => import('./pages/store-front/store-front.module').then( m => m.StoreFrontPageModule)
   }

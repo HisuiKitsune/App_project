@@ -1,5 +1,6 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { IonSlides } from '@ionic/angular';
+
 
 @Component({
   selector: 'app-store-front',
@@ -25,4 +26,6 @@ export class StoreFrontPage implements OnInit {
   slidesDidLoad(slides: IonSlides): void {
     slides.startAutoplay();
   }
+
 }
+

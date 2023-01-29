@@ -12,11 +12,15 @@ ion-slides {
   --bullet-background-active: #E7AF32;
 
 }
+ion-slides.deckslide {
+  height: 160px;
+}
 
 ion-item-divider {
   --background:#FFFAFA ;
   --color: #E7AF32;
-    border: none;
+    border-bottom: none;
+    border-top: 5px solid #E7AF32;
   --padding-top: 10px;
   --padding-bottom: 10px;
   --padding-start: 10px;
@@ -24,9 +28,65 @@ ion-item-divider {
   box-shadow: rgba(33, 35, 38, 0.1) 0px 10px 10px -10px;
 
   ion-label {
-    font-weight: bold;
+    font-family: 'Roboto Condensed', sans-serif;
     margin-top: 10px;
-    font-family: monospace;
+
   }
 }
 
+div.classicshape {
+  margin: auto;
+  margin-top: 10px;
+  background-color: #FFFAFA;
+  box-shadow: rgba(33, 35, 38, 0.1) 0px 10px 10px -10px;
+}
+div span {
+  display: block;
+  margin: auto;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  text-align: center;
+  font-weight: bold;
+  font-size: large;
+}
+
+ion-label {
+  font-size: medium;
+  font-weight: bold;
+  color: black;
+}
+
+
+.featured {
+  background-color: #FFFAFA;
+  margin-top: 10px;
+  height: 260px;
+  box-shadow: rgba(33, 35, 38, 0.1) 0px 10px 10px -10px;
+
+  span{
+    color: red;
+  }
+  img{
+    height: 120px;
+    width: 120px;
+  }
+  ion-item{
+    width: max-content;
+  }
+  .credit{
+    margin-top: -20px;
+    font-size: small;
+    color: gray;
+  }
+  .price {
+    margin-top: -10px;
+    color: #E7AF32;
+  }
+  ion-slides{
+    height: max-content;
+  }
+  ion-button {
+    width: 115px;
+    transition: all 0.25s ease;
+  }
+}
