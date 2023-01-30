@@ -15,6 +15,7 @@ import jakarta.mail.internet.MimeMessage;
 @Service
 public class EmailUtil {
 
+    @Autowired
     private JavaMailSender eMailSender;
 
     public void sendSimpleMessage(String to, String subject, String text, List<String> list) {
