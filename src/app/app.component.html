@@ -3,17 +3,17 @@
     <ion-menu contentId="main-content" type="push">
       <ion-content>
         <ion-list id="menu">
-          <ion-avatar slot="start">
+          <ion-avatar slot="start" (click)="goToLoginPage()">
             <img src="https://cdn-icons-png.flaticon.com/512/5087/5087579.png" alt="">
           </ion-avatar>
-          <ion-list-header>User12345</ion-list-header>
-          <ion-note>skateclub@gmail.com</ion-note>
+          <ion-list-header>Not Logged</ion-list-header>
+          <ion-note>skateclubclient@email.com</ion-note>
           <ion-list>
-            <ion-item><ion-icon color="dark" name="person-sharp"></ion-icon><span>Meu perfil</span></ion-item>
-            <ion-item><ion-icon color="dark" name="star"></ion-icon><span>Favoritos</span></ion-item>
-            <ion-item><ion-icon color="dark" name="storefront"></ion-icon><span>Loja</span></ion-item>
-            <ion-item><ion-icon color="dark" name="search-sharp"></ion-icon><span>Buscar produto</span></ion-item>
-            <ion-item><ion-icon color="dark" name="mail"></ion-icon><span>Fale conosco</span></ion-item>
+            <ion-item><ion-icon class="menuicon" name="person-sharp"></ion-icon><span>Meu perfil</span></ion-item>
+            <ion-item><ion-icon class="menuicon" name="star"></ion-icon><span>Favoritos</span></ion-item>
+            <ion-item><ion-icon class="menuicon" name="storefront"></ion-icon><span>Loja</span></ion-item>
+            <ion-item><ion-icon class="menuicon" name="search-sharp"></ion-icon><span>Buscar produto</span></ion-item>
+            <ion-item><ion-icon class="menuicon" name="mail"></ion-icon><span>Fale conosco</span></ion-item>
           </ion-list>
           <ion-list class="submenu">
             <ion-item><span>Central de Ajuda</span></ion-item>

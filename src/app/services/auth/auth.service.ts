@@ -1,59 +1,44 @@
-import 'firebase/compat/auth';
-import 'firebase/compat/firestore';
-
+import { CredentialModel } from './../../model/user/credential.model';
 import { Injectable } from '@angular/core';
-import { AngularFireAuth } from '@angular/fire/compat/auth';
-import * as firebase from 'firebase/compat/app';
-import { Observable } from 'rxjs';
-import { User } from 'src/app/model/user/user';
-
-import { UserRegister } from './../../model/user/userRegister';
+import { Auth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, updateProfile, UserCredential } from '@angular/fire/auth';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
+  constructor(private auth: Auth) {}
 
-  constructor(private auth: AngularFireAuth) { }
-
-  register(userRegister: UserRegister) : Observable<void> {
-    return new Observable<void>(observer => {
-      setTimeout(() => {
-        if(userRegister.email == "error@email.com") {
-          observer.error({message: "email already registered"});
-        } else {
-          observer.next();
-        }
-        observer.complete();
-      }, 3000)
+  async register(credential:CredentialModel): Promise<UserCredential | null> {
+    console.log(credential)
+    return createUserWithEmailAndPassword(this.auth, credential.email, credential.password)
+    .then((credential:UserCredential) => {
+      // persistencia dos dados name, email
+      console.log(credential)
+      return credential;
     })
+    .catch(error => {
+      console.error(error);
+      return null;
+    });
   }
 
-  recoverEmailPassword(email: string) : Observable<void>  {
-    return new Observable<void>(observer => {
-      this.auth.sendPasswordResetEmail(email).then(() => {
-        observer.next();
-        observer.complete();
-      }).catch(error => {
-        observer.error(error);
-        observer.complete();
-      })
-    })
+  async signIn(credential:CredentialModel): Promise<UserCredential | null> {
+    return signInWithEmailAndPassword(this.auth, credential.email, credential.password)
+    .then((user:UserCredential) => user)
+    .catch(error => {
+      console.error(error);
+      return null;
+    });
   }
 
-  login(email: string, password: string) : Observable<User> {
-    return new Observable<User>(observer => {
-      this.auth.setPersistence(firebase.default.auth.Auth.Persistence.LOCAL).then(()=> {
-        this.auth.signInWithEmailAndPassword(email, password)
-        .then((firebaseUser: firebase.default.auth.UserCredential) => {
-          observer.next({email, id: firebaseUser.user.uid});
-          observer.complete();
-        }).catch(error => {
-          observer.error(error);
-          observer.complete();
-        })
-      })
-    })
+  async updateProfile(displayName:string): Promise<void> {
+    return updateProfile(this.auth.currentUser!, { displayName: displayName });
   }
+
+  async signOut(): Promise<void> {
+    return signOut(this.auth);
+  }
+
+  //async recovery(); // recupera senha
 }

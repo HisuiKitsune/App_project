@@ -1,15 +1,20 @@
+import { AuthService } from 'src/app/services/auth/auth.service';
+import { CredentialModel } from './../../model/user/credential.model';
+
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { NavController, ToastController } from '@ionic/angular';
+import { AlertController, MenuController, NavController, ToastController } from '@ionic/angular';
 import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
 import { AppState } from 'src/store/AppState';
 
 import { hide, show } from './../../../store/loading/loading.actions';
-import { login, recoverPassword } from './../../../store/login/LoginActions';
+import { recoverPassword } from './../../../store/login/LoginActions';
 import { LoginState } from './../../../store/login/LoginState';
 import { LoginPageForm } from './login.page.form';
+
+
 
 
 @Component({
@@ -21,6 +26,7 @@ export class LoginPage implements OnInit, OnDestroy {
 
   form!: FormGroup;
   loginStateSubscription!: Subscription;
+  credentialFormGroup!:FormGroup;
 
 
   constructor(
@@ -28,7 +34,10 @@ export class LoginPage implements OnInit, OnDestroy {
     private formBuilder:FormBuilder,
     private store: Store<AppState>,
     private toastController: ToastController,
-    private navController: NavController
+    private navController: NavController,
+    private menu: MenuController,
+    private firebaseAuthenticationService: AuthService,
+    private alertController: AlertController
     //private authService: AuthService
     ) { }
 
@@ -44,6 +53,11 @@ export class LoginPage implements OnInit, OnDestroy {
 
       this.onError(loginState);
       this.toggleLoading(loginState);
+
+      this.credentialFormGroup = this.formBuilder.group({
+        email: ['', [Validators.required, Validators.email]],
+        password: ['', [Validators.required, Validators.minLength(8)]]
+      });
 
     })
   }
@@ -121,14 +135,33 @@ export class LoginPage implements OnInit, OnDestroy {
 
   }
 
+  ionViewWillEnter() {
+    this.menu.enable(false);
+  }
 
   forgotEmailPassword(){
     this.store.dispatch(recoverPassword({email: this.form.get('email')?.value}));
   }
 
-  login(){
-    this.store.dispatch(login({email: this.form.get('email')?. value, password: this.form.get('password')?.value}));
+  async login():Promise<void>{
+    const user = await this.firebaseAuthenticationService.signIn(this.credentialFormGroup.getRawValue() as CredentialModel);
+    if(user) {
+      this.router.navigateByUrl('/tabs', { replaceUrl: true });
+    } else {
+      this.showAlert('SignIn failed', 'Please try again!');
+    }
   }
+
+  async showAlert(header: string, message: string): Promise<void> {
+    const alert = await this.alertController.create({
+      header: header,
+      message: message,
+      buttons: ['Ok']
+    });
+
+    await alert.present();
+  }
+
 
   register(){
     this.router.navigateByUrl("/register");
