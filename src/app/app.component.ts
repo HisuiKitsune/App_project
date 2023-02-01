@@ -13,6 +13,10 @@ export class AppComponent {
   constructor(private router: Router) {}
 
   goToLoginPage() {
-    this.router.navigate(['login'])
+    this.router.navigate(['login-page'])
+  }
+
+  goToStore() {
+    this.router.navigate(['store-front'])
   }
 }

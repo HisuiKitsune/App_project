@@ -1,3 +1,4 @@
+import { LoginPage } from './login.page';
 import { ErrorMessageModule } from './../../shared/error-message.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -5,9 +6,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { LoginPageRoutingModule } from './login-routing.module';
-
-import { LoginPage } from './login.page';
 import { SharedModule } from 'src/app/shared/shared.module';
 
 @NgModule({
@@ -15,7 +13,6 @@ import { SharedModule } from 'src/app/shared/shared.module';
     CommonModule,
     FormsModule,
     IonicModule,
-    LoginPageRoutingModule,
     ReactiveFormsModule,
     SharedModule,
     ErrorMessageModule
