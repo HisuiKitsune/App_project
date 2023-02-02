@@ -4,9 +4,9 @@
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
     <ion-buttons slot="end">
-      <ion-menu-button>
+      <ion-button (click)="goToCart()">
         <ion-icon class="mycart" name="cart"></ion-icon>
-      </ion-menu-button>
+      </ion-button>
     </ion-buttons>
     <ion-title>Skate Club</ion-title>
   </ion-toolbar>
@@ -102,7 +102,7 @@
   <ion-slides class="mostSold" [options]="{ slidesPerView: 1 , zoom: false, grabCursor: true }">
 
     <ion-slide>
-  <ion-card color="dark">
+  <ion-card>
     <ion-grid>
      <ion-row>
       <ion-col>
@@ -110,7 +110,7 @@
     <ion-button color="success"><ion-icon color="dark" name="cart"></ion-icon></ion-button>
     </ion-col>
     <ion-col>
-    <ion-item color="dark">
+    <ion-item lines="none">
       <h2>Casaco Element</h2>
     </ion-item>
     <ion-card-content>
@@ -124,7 +124,7 @@
   </ion-slide>
 
 <ion-slide>
-  <ion-card color="dark">
+  <ion-card>
     <ion-grid>
      <ion-row>
       <ion-col>
@@ -132,7 +132,7 @@
     <ion-button color="success"><ion-icon color="dark" name="cart"></ion-icon></ion-button>
     </ion-col>
     <ion-col>
-    <ion-item color="dark">
+    <ion-item lines="none">
       <h2>Shape Element</h2>
     </ion-item>
     <ion-card-content>
@@ -146,7 +146,7 @@
  </ion-slide>
 
  <ion-slide>
-  <ion-card color="dark">
+  <ion-card >
     <ion-grid>
      <ion-row>
       <ion-col>
@@ -154,7 +154,7 @@
     <ion-button color="success"><ion-icon color="dark" name="cart"></ion-icon></ion-button>
     </ion-col>
     <ion-col>
-    <ion-item color="dark">
+    <ion-item lines="none">
       <h2>Tênis Adidas</h2>
     </ion-item>
     <ion-card-content>

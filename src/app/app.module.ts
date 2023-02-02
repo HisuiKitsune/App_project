@@ -1,3 +1,4 @@
+import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { NgModule } from '@angular/core';
 import {  initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { getAuth, provideAuth } from '@angular/fire/auth';
@@ -11,6 +12,7 @@ import { environment } from 'src/environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoadingComponent } from './components/loading/loading.component';
+import { AngularFireModule } from '@angular/fire/compat';
 
 
 
@@ -22,6 +24,7 @@ import { LoadingComponent } from './components/loading/loading.component';
     BrowserModule,
     IonicModule.forRoot(),
     AppRoutingModule,
+    AngularFireModule.initializeApp(environment.firebase),
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideFirestore(() => getFirestore()),
     provideStorage(() => getStorage()),

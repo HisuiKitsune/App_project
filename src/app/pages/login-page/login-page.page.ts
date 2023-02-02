@@ -1,3 +1,4 @@
+
 import { FirebaseAuthenticationService } from './../../services/firebase.authentication.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -17,7 +18,7 @@ export class LoginPagePage implements OnInit {
     private formBuilder: FormBuilder,
     private firebaseAuthenticationService: FirebaseAuthenticationService,
     private router: Router,
-    private alertController: AlertController
+    private alertController: AlertController,
   ) {}
 
   ngOnInit() {
@@ -37,7 +38,7 @@ export class LoginPagePage implements OnInit {
     if(user) {
       this.router.navigateByUrl('/store-front', { replaceUrl: true });
     } else {
-      this.showAlert('Register failed', 'Please try again!');
+      this.showAlert('Register failed', 'Please try again');
     }
   }
 
@@ -47,7 +48,7 @@ export class LoginPagePage implements OnInit {
     if(user) {
       this.router.navigateByUrl('/store-front', { replaceUrl: true });
     } else {
-      this.showAlert('SignIn failed', 'Please try again!');
+      this.showAlert('Sign-In failed', 'E-mail or password is wrong or does not exist');
     }
   }
 
@@ -61,4 +62,16 @@ export class LoginPagePage implements OnInit {
     await alert.present();
   }
 
+  async resetPassword(): Promise<void>{
+    this.firebaseAuthenticationService.resetPasswordInit(this.credentialFormGroup.value.email)
+    .then(
+      async () => {
+        this.showAlert('Recovery e-mail sent!', 'Check your e-mail inbox');
+
+      },
+     async error => {
+      this.showAlert('Error', 'An error ocurred, please try again');
+     });
+
+  }
 }

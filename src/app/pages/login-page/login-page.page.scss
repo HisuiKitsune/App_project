@@ -1,9 +1,11 @@
-ion-button[color="tertiary"]{
+ion-button.register{
   text-transform: uppercase;
+  color: #E7AF32;
 }
-ion-button[color="success"]{
+ion-button.login{
   text-transform: uppercase;
   margin-top: 30px;
+  --background: #E7AF32;
 }
 
 ion-button[color="danger"]{
@@ -25,5 +27,5 @@ ion-card {
 }
 
 ion-card-header{
- background-color: orange;
+ background-color: #E7AF32;
 }

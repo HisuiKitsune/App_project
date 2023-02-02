@@ -1,0 +1,39 @@
+div.centralHeader{
+  height: 200px;
+  background-image: url(../../../assets/img/centralBack.jpg);
+  background-position: center center;
+  background-size: cover;
+
+  ion-searchbar {
+    padding-top: 200px;
+    --background: var(--ion-color-dark);
+    color: black;
+  }
+}
+
+div.optionCards{
+  margin-top: 80px;
+}
+
+ion-card {
+  --background: var(--ion-color-dark);
+}
+
+ion-button {
+  color: #E7AF32;
+}
+
+ion-card-title {
+  color: black;
+}
+
+div.infoText{
+  font-size: small;
+  text-align: justify;
+  margin: auto;
+  margin-top: 20px;
+  margin-left: 20px;
+  margin-right: 20px;
+  margin-bottom: 20px;
+  color: gray;
+}

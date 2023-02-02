@@ -42,7 +42,18 @@ export class AppComponent {
     this.router.navigate(['store-front'])
   }
 
-
+  goToCentral() {
+    this.router.navigate(['central-ajuda'])
+  }
+  goToTermos() {
+    this.router.navigate(['termos'])
+  }
+  goToPrivacidade() {
+    this.router.navigate(['privacidade'])
+  }
+  goToCodigoConduta() {
+    this.router.navigate(['codigo-conduta'])
+}
 
 
   ngOnInit() {
@@ -87,7 +98,7 @@ async changeImage(): Promise<void> {
 
   async signOut(): Promise<void> {
     await this.firebaseAuthenticationService.signOut();
-    this.router.navigateByUrl('/', { replaceUrl: true });
+    this.router.navigateByUrl('/store-front', { replaceUrl: true });
   }
 
   async message(header:string, message:string) {

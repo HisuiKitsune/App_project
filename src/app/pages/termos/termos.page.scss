@@ -1,0 +1,15 @@
+ion-header {
+  --backgroud: var(--ion-color-dark);
+}
+
+ion-content {
+  --background: var(--ion-color-dark);
+}
+h1, p {
+  color: gray;
+}
+div {
+  text-align: justify;
+  margin-left: 20px;
+  margin-right: 20px;
+}

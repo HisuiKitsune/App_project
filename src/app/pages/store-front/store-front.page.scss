@@ -89,4 +89,8 @@ ion-label {
     width: 115px;
     transition: all 0.25s ease;
   }
+  ion-card, ion-item {
+    --background: snow;
+    color: #000;
+  }
 }

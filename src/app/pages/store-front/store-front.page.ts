@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { IonSlides } from '@ionic/angular';
 
@@ -18,13 +19,17 @@ export class StoreFrontPage implements OnInit {
     autoplay: true
   };
 
-  constructor() { }
+  constructor( private router: Router) { }
 
   ngOnInit() {}
 
 
   slidesDidLoad(slides: IonSlides): void {
     slides.startAutoplay();
+  }
+
+  goToCart() {
+    this.router.navigate(['mycart']);
   }
 
 }
