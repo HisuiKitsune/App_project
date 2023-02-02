@@ -1,3 +1,4 @@
+
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -15,6 +16,7 @@ import { LoginPagePage } from './login-page.page';
     IonicModule,
     LoginPagePageRoutingModule,
     ReactiveFormsModule,
+
 
   ],
   declarations: [LoginPagePage]

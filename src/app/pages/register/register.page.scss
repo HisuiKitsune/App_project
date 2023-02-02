@@ -1,7 +1,11 @@
-ion-content {
-  --background: var(--ion-color-dark);
-}
 
 ion-button {
   margin: 10px;
+  --background: #E7AF32;
+}
+ion-toolbar.header {
+  --background: #E7AF32;
+}
+ion-card-title {
+  color: #E7AF32;
 }

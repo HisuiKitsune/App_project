@@ -1,7 +1,7 @@
 ion-button[color="tertiary"]{
   text-transform: uppercase;
 }
-ion-button[color="primary"]{
+ion-button[color="success"]{
   text-transform: uppercase;
   margin-top: 30px;
 }
@@ -12,7 +12,12 @@ ion-button[color="danger"]{
 
 
 ion-content {
-  --background: var(--ion-color-tertiary);
+  --background: ;
+  background-image: url(../../../assets/img/loginback.jpg);
+  background-size: cover;
+  background-position: center center;
+  background-attachment: fixed;
+
 }
 
 ion-card {

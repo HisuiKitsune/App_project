@@ -6,7 +6,10 @@
           <ion-avatar slot="start" (click)="goToLoginPage()">
             <img src="https://cdn-icons-png.flaticon.com/512/5087/5087579.png" alt="">
           </ion-avatar>
-          <ion-list-header>Not Logged</ion-list-header>
+          <ion-list-header *ngIf="displayName">
+            {{displayName}}
+            <ng-container *ngIf="displayName === null">Not Logged</ng-container>
+          </ion-list-header>
           <ion-note>skateclubclient@email.com</ion-note>
           <ion-list>
             <ion-item><ion-icon class="menuicon" name="person-sharp"></ion-icon><span>Meu perfil</span></ion-item>
