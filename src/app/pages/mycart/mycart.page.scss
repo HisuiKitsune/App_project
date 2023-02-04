@@ -74,4 +74,17 @@ ion-button.trash {
 }
 ion-button.buy {
   --background: #E7AF32;
+  position:relative;
+  margin-top: 20px;
+  width: 99%;
+}
+div.resumo {
+  background-color: snow;
+  width: 90%;
+  p{
+    color: gray;
+  }
+  span {
+    margin-left: 50px;
+  }
 }

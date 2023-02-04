@@ -11,7 +11,6 @@ import { environment } from 'src/environments/environment';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { LoadingComponent } from './components/loading/loading.component';
 import { AngularFireModule } from '@angular/fire/compat';
 
 
@@ -19,7 +18,7 @@ import { AngularFireModule } from '@angular/fire/compat';
 
 
 @NgModule({
-  declarations: [AppComponent, LoadingComponent],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     IonicModule.forRoot(),

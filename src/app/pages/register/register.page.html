@@ -5,7 +5,7 @@
 </ion-header>
 
 <ion-content color="light">
-  <form [formGroup]="userFormGroup" #userFormGroupDirective="ngForm" (ngSubmit)="createUser(userFormGroup)">
+  <form [formGroup]="userFormGroup" (ngSubmit)="createUser(userFormGroup.value)">
   <ion-card >
     <ion-card-header>
       <ion-card-title >Create a Login</ion-card-title>

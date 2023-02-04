@@ -10,6 +10,7 @@ export class CentralAjudaPage implements OnInit {
   constructor() { }
 
   ngOnInit() {
+
   }
 
 }
