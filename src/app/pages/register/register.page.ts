@@ -94,9 +94,9 @@ export class RegisterPage implements OnInit {
 
   createUser(values: any) {
     let newUser: UserRegister = { ...values };
-
     this.fireBaseService.saveUser(newUser);
-    this.contactFormGroupDirective.reset();
+    this.userFormGroup.reset();
+    this.router.navigate(['/store-front'])
   }
 
   defineAvatar() {

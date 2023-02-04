@@ -1,16 +1,17 @@
 <ion-app>
   <ion-split-pane contentId="main-content">
-    <ion-menu contentId="main-content" type="push">
+    <ion-menu side="start" contentId="main-content" type="overlay">
       <ion-content>
+        <ion-menu-toggle auto-hide="true">
         <ion-list id="menu">
           <ion-avatar slot="start" (click)="goToLoginPage()">
             <img src="https://cdn-icons-png.flaticon.com/512/5087/5087579.png" alt="">
           </ion-avatar>
-          <ion-list-header *ngIf="displayName">
+          <ion-list-header>
             {{displayName}}
-            <ng-container *ngIf="displayName === null">Not Logged</ng-container>
           </ion-list-header>
-          <ion-note>skateclubclient@email.com</ion-note>
+          <ion-note>{{email}}</ion-note>
+
           <ion-list>
             <ion-item><ion-icon class="menuicon" name="person-sharp"></ion-icon><span>Meu perfil</span></ion-item>
             <ion-item><ion-icon class="menuicon" name="star"></ion-icon><span>Favoritos</span></ion-item>
@@ -25,12 +26,10 @@
             <ion-item (click)="goToPrivacidade()"><span>Privacidade</span></ion-item>
             <ion-item (click)="signOut()" color="danger"><ion-icon color="dark" name="log-out-outline"></ion-icon><span>Sair</span></ion-item>
           </ion-list>
-          <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages; let i = index">
-          </ion-menu-toggle>
         </ion-list>
+      </ion-menu-toggle>
       </ion-content>
     </ion-menu>
     <ion-router-outlet id="main-content"></ion-router-outlet>
   </ion-split-pane>
-  <app-loading></app-loading>
 </ion-app>

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Auth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, updateProfile, UserCredential } from '@angular/fire/auth';
+import { Auth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, updateProfile, UserCredential, getAuth } from '@angular/fire/auth';
 import { CredentialModel } from '../model/user/credential.model';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 
@@ -11,8 +11,7 @@ import 'firebase/compat/firestore';
 })
 export class FirebaseAuthenticationService {
 
-  constructor(private angularFireAuth: AngularFireAuth,
-              private auth: Auth) {}
+  constructor(private auth: Auth) {}
 
   async register(credential:CredentialModel): Promise<UserCredential | null> {
     console.log(credential)
@@ -42,7 +41,7 @@ export class FirebaseAuthenticationService {
   }
 
   async signOut(): Promise<void> {
-    return signOut(this.auth);
+    return signOut(getAuth());
   }
 
   resetPasswordInit(email: string): Promise<void> {

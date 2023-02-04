@@ -14,6 +14,7 @@ export class FirebaseFirestoreService {
 
   saveUser(user: UserRegister): Promise<void> {
     const document = doc(collection(this.firestore, 'users'));
+    console.log(user);
     return setDoc(document, user);
   }
 

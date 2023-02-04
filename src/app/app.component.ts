@@ -17,7 +17,7 @@ import { FirebaseFirestoreService } from './services/firebase.firestore.service'
 export class AppComponent {
   imageUrl!:string;
   displayName!:string;
-
+  email!: string;
   menu!: HTMLIonMenuElement;
 
   perfilFormGroup!: FormGroup;
@@ -57,13 +57,29 @@ export class AppComponent {
 
 
   ngOnInit() {
-    this.imageUrl = this.auth.currentUser!.photoURL!;
-    this.displayName = this.auth.currentUser!.displayName!;
+    console.log("display name = " + this.displayName);
 
-    this.perfilFormGroup = new FormGroup({
+
+    if(this.auth.currentUser) {
+      this.displayName = this.auth.currentUser!.displayName!;
+      this.imageUrl = this.auth.currentUser!.photoURL!;
+      this.email = this.auth.currentUser!.email!;
+
+
+   /* this.perfilFormGroup = new FormGroup({
       name: new FormControl(this.auth.currentUser!.displayName, Validators.required),
       email: new FormControl(this.auth.currentUser!.email, Validators.required)
-    });
+    });*/
+
+    } else {
+      this.displayName = "Not Logged";
+      this.imageUrl = "../assets/img/avatar.png";
+
+    };
+
+
+
+
   }
 
 async update(): Promise<void> {
@@ -98,7 +114,10 @@ async changeImage(): Promise<void> {
 
   async signOut(): Promise<void> {
     await this.firebaseAuthenticationService.signOut();
-    this.router.navigateByUrl('/store-front', { replaceUrl: true });
+    console.log("Error");
+    this.router.navigate(['loader'])
+    .then(() =>
+    setTimeout(() => {this.router.navigate(['store-front'])}, 2000));
   }
 
   async message(header:string, message:string) {
