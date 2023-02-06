@@ -54,4 +54,8 @@ public class User implements Serializable {
     @Column(name = "role")
     private String role;
 
+    public static Object withUsername(String string) {
+        return null;
+    }
+
 }
