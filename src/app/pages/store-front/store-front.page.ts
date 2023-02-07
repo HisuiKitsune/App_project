@@ -1,6 +1,9 @@
+import { FirebaseFirestoreService } from './../../services/firebase.firestore.service';
+import { getAuth } from '@angular/fire/auth';
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { IonSlides } from '@ionic/angular';
+import { data } from 'jquery';
 
 
 @Component({
@@ -19,9 +22,21 @@ export class StoreFrontPage implements OnInit {
     autoplay: true
   };
 
-  constructor( private router: Router) { }
+  constructor( private router: Router,
+                private firebaseFirestoreService: FirebaseFirestoreService) { }
 
   ngOnInit() {}
+
+  ionViewDidLoad() {
+    if(!getAuth().currentUser?.displayName) {
+
+      this.firebaseFirestoreService.findPerfil().subscribe({
+        next: (data) => console.log(data),
+        error: (err) => console.error(err)
+      })
+      // next:(data) => getAuth().currentUser?.displayName = data
+    }
+  }
 
 
   slidesDidLoad(slides: IonSlides): void {

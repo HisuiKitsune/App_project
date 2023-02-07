@@ -1,5 +1,6 @@
+import { UserRegister } from './../model/user/userRegister';
 import { Injectable } from '@angular/core';
-import { Auth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, updateProfile, UserCredential, getAuth } from '@angular/fire/auth';
+import { Auth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, updateProfile, UserCredential, getAuth, user } from '@angular/fire/auth';
 import { CredentialModel } from '../model/user/credential.model';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 
@@ -13,16 +14,12 @@ export class FirebaseAuthenticationService {
 
   constructor(private auth: Auth) {}
 
-  async register(credential:CredentialModel): Promise<UserCredential | null> {
-    console.log(credential)
-    return createUserWithEmailAndPassword(this.auth, credential.email, credential.password)
+  async register(user:CredentialModel): Promise<UserCredential | null> {
+    return createUserWithEmailAndPassword(this.auth, user.email, user.password)
     .then((credential:UserCredential) => {
-      // persistencia dos dados name, email
-      console.log(credential)
       return credential;
     })
     .catch(error => {
-      console.error(error);
       return null;
     });
   }
@@ -36,7 +33,7 @@ export class FirebaseAuthenticationService {
     });
   }
 
-  async updateProfile(displayName:string): Promise<void> {
+  async updateProfile(displayName: string): Promise<void> {
     return updateProfile(this.auth.currentUser!, { displayName: displayName });
   }
 

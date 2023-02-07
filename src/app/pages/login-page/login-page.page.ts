@@ -1,3 +1,4 @@
+import { UserRegister } from './../../model/user/userRegister';
 
 import { FirebaseAuthenticationService } from './../../services/firebase.authentication.service';
 import { Component, OnInit } from '@angular/core';
@@ -32,15 +33,6 @@ export class LoginPagePage implements OnInit {
     this.router.navigate(['register'])
   }
 
-  async register(): Promise<void> {
-    const user = await this.firebaseAuthenticationService.register(this.credentialFormGroup.value as CredentialModel);
-
-    if(user) {
-      this.router.navigateByUrl('/store-front', { replaceUrl: true });
-    } else {
-      this.showAlert('Register failed', 'Please try again');
-    }
-  }
 
   async signIn(): Promise<void> {
     const user = await this.firebaseAuthenticationService.signIn(this.credentialFormGroup.getRawValue() as CredentialModel)

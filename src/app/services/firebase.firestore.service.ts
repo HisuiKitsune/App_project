@@ -1,7 +1,9 @@
+import { Address } from './../model/address/address';
+import { CredentialModel } from 'src/app/model/user/credential.model';
 import { Injectable } from '@angular/core';
 import { Auth } from '@angular/fire/auth';
-import { collection, doc, docData, DocumentData, Firestore, setDoc } from '@angular/fire/firestore';
-import { Observable } from 'rxjs';
+import { collection, collectionData, doc, docData, DocumentData, Firestore, setDoc } from '@angular/fire/firestore';
+import { map, Observable } from 'rxjs';
 
 import { UserRegister } from '../model/user/userRegister';
 
@@ -18,17 +20,17 @@ export class FirebaseFirestoreService {
     return setDoc(document, user);
   }
 
-  /*list(): Observable<ContactModel[]> {
-    const contactsCollection = collection(this.firestore, 'contacts');
+  list(): Observable<UserRegister[]> {
+    const contactsCollection = collection(this.firestore, 'users');
     return collectionData(contactsCollection, {idField: 'id'})
       .pipe(
-        map(result => result as ContactModel[])
+        map(result => result as UserRegister[])
       );
-  }*/
+  }
 
   findPerfil(): Observable<DocumentData> {
     const userId = this.auth.currentUser!.uid;
-    const document = doc(this.firestore, `perfils/${userId}`);
+    const document = doc(this.firestore, `users/${userId}`);
     return docData(document);
   }
 
@@ -54,9 +56,9 @@ export class FirebaseFirestoreService {
           )
     }*/
 
-  updatePerfil(name: string): Promise<void> {
+  updateUser(name: UserRegister): Promise<void> {
     const userId = this.auth.currentUser!.uid;
-    const document = doc(this.firestore, 'perfils', userId);
+    const document = doc(this.firestore, 'users', userId);
     return setDoc(document, { name });
   }
 

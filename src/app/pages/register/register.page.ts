@@ -1,7 +1,9 @@
+import { getAuth } from '@angular/fire/auth';
+import { CredentialModel } from 'src/app/model/user/credential.model';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, FormGroupDirective, ValidatorFn, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { IonInput } from '@ionic/angular';
+import { IonInput, AlertController } from '@ionic/angular';
 import { findCity, findNeighborhood, findNumber, findState, findStreet, findZipCode } from 'src/app/utils/address-utils';
 
 import { UserRegister } from '../../model/user/userRegister';
@@ -28,7 +30,8 @@ export class RegisterPage implements OnInit {
   constructor(
     private fireBaseService: FirebaseFirestoreService,
     private firebaseAuthenticationService: FirebaseAuthenticationService,
-    private router: Router) {
+    private router: Router,
+    private alertController: AlertController) {
 
     }
 
@@ -88,15 +91,18 @@ export class RegisterPage implements OnInit {
     return validator;
   }
 
-
-
-
-
-  createUser(values: any) {
+  async createUser(values: any) {
     let newUser: UserRegister = { ...values };
-    this.fireBaseService.saveUser(newUser);
+    await this.firebaseAuthenticationService.register(this.userFormGroup.value as CredentialModel);
+    await this.fireBaseService.updateUser(newUser);
+    this.update();
     this.userFormGroup.reset();
-    this.router.navigate(['/store-front'])
+    if(newUser) {
+      this.router.navigateByUrl('/store-front', { replaceUrl: true });
+    } else {
+      this.showAlert('Register failed', 'Please try again');
+    }
+
   }
 
   defineAvatar() {
@@ -106,6 +112,11 @@ export class RegisterPage implements OnInit {
     }
   }
 
+  async update(): Promise<void> {
+    const name:string = this.userFormGroup.get('name')?.value;
+    this.firebaseAuthenticationService.updateProfile(name);
+  }
+
   async signOut() {
     await this.firebaseAuthenticationService.signOut();
     this.router.navigateByUrl('/', { replaceUrl: true });
@@ -113,5 +124,15 @@ export class RegisterPage implements OnInit {
 
   async perfil() {
     this.router.navigateByUrl('/perfil', { replaceUrl: true });
+  }
+
+  async showAlert(header: string, message: string): Promise<void> {
+    const alert = await this.alertController.create({
+      header: header,
+      message: message,
+      buttons: ['Ok']
+    });
+
+    await alert.present();
   }
 }
