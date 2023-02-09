@@ -28,7 +28,7 @@ export class FirebaseFirestoreService {
       );
   }
 
-  findPerfil(): Observable<DocumentData> {
+  findUser(): Observable<DocumentData> {
     const userId = this.auth.currentUser!.uid;
     const document = doc(this.firestore, `users/${userId}`);
     return docData(document);

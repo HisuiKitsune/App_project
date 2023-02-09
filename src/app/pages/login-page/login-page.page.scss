@@ -1,15 +1,32 @@
 ion-button.register{
   text-transform: uppercase;
   color: #E7AF32;
+  --border-radius: 16px;
 }
 ion-button.login{
   text-transform: uppercase;
   margin-top: 30px;
   --background: #E7AF32;
+  --border-radius: 16px;
+
 }
 
 ion-button[color="danger"]{
   text-transform: initial;
+  --border-radius: 16px;
+}
+
+.flex-center{
+  display: flex;
+  justify-content:center;
+  align-items: center;
+  height:85%;
+}
+
+ion-button.back {
+  color: black ;
+  --background: none;
+
 }
 
 

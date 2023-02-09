@@ -1,12 +1,21 @@
-import { UserRegister } from './../model/user/userRegister';
-import { Injectable } from '@angular/core';
-import { Auth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, updateProfile, UserCredential, getAuth, user } from '@angular/fire/auth';
-import { CredentialModel } from '../model/user/credential.model';
-import { AngularFireAuth } from '@angular/fire/compat/auth';
-
-import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth';
 import 'firebase/compat/firestore';
+
+import { Injectable } from '@angular/core';
+import {
+  Auth,
+  createUserWithEmailAndPassword,
+  getAuth,
+  signInWithEmailAndPassword,
+  signOut,
+  updateProfile,
+  UserCredential,
+} from '@angular/fire/auth';
+import firebase from 'firebase/compat/app';
+
+import { CredentialModel } from '../model/user/credential.model';
+
+
 @Injectable({
   providedIn: 'root'
 })
@@ -20,6 +29,7 @@ export class FirebaseAuthenticationService {
       return credential;
     })
     .catch(error => {
+      console.error(error);
       return null;
     });
   }

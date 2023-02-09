@@ -1,14 +1,13 @@
-import { getAuth } from '@angular/fire/auth';
-import { CredentialModel } from 'src/app/model/user/credential.model';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, FormGroupDirective, ValidatorFn, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { IonInput, AlertController } from '@ionic/angular';
+import { AlertController, IonInput } from '@ionic/angular';
+import { CredentialModel } from 'src/app/model/user/credential.model';
 import { findCity, findNeighborhood, findNumber, findState, findStreet, findZipCode } from 'src/app/utils/address-utils';
 
 import { UserRegister } from '../../model/user/userRegister';
-import { FirebaseAuthenticationService } from '../../services/firebase.authentication.service';
 import { FirebaseFirestoreService } from '../../services/firebase.firestore.service';
+import { FirebaseAuthenticationService } from './../../services/firebase.authentication.service';
 
 declare let google: any;
 
@@ -91,10 +90,11 @@ export class RegisterPage implements OnInit {
     return validator;
   }
 
+
   async createUser(values: any) {
-    let newUser: UserRegister = { ...values };
-    await this.firebaseAuthenticationService.register(this.userFormGroup.value as CredentialModel);
-    await this.fireBaseService.updateUser(newUser);
+  let newUser: UserRegister = { ...values };
+  this.firebaseAuthenticationService.register(this.userFormGroup.value as CredentialModel);
+   this.fireBaseService.updateUser(newUser);
     this.update();
     this.userFormGroup.reset();
     if(newUser) {

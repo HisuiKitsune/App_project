@@ -1,12 +1,10 @@
-import { Component, ViewChild } from '@angular/core';
-import { Auth } from '@angular/fire/auth';
-import { FormGroup, FormGroupDirective } from '@angular/forms';
+import { Component } from '@angular/core';
+import { Auth, getAuth } from '@angular/fire/auth';
 import { Router } from '@angular/router';
-import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
 import { AlertController, LoadingController } from '@ionic/angular';
 
+import { DataServiceService } from './services/data-service.service';
 import { FirebaseAuthenticationService } from './services/firebase.authentication.service';
-import { FirebaseFirestoreService } from './services/firebase.firestore.service';
 import { FirebaseStorageService } from './services/firebase.storage.service';
 
 @Component({
@@ -19,102 +17,65 @@ export class AppComponent {
   displayName!:string;
   email!: string;
   menu!: HTMLIonMenuElement;
+  logged: boolean = false;
 
-  perfilFormGroup!: FormGroup;
-  @ViewChild('perfilFormGroupDirective')
-  perfilFormGroupDirective!: FormGroupDirective;
 
   public appPages = [];
-  constructor(private firebaseFirestoreService: FirebaseFirestoreService,
+  constructor(
     private firebasestorageService: FirebaseStorageService,
     private firebaseAuthenticationService: FirebaseAuthenticationService,
     private auth: Auth,
     private router: Router,
     private loadingController: LoadingController,
-    private alertController: AlertController) {
-    }
-
-
-  goToLoginPage() {
-    this.router.navigate(['login-page'])
-  }
+    private alertController: AlertController,
+    private dataServiceService: DataServiceService
+    ) {}
 
   goToStore() {
-    this.router.navigate(['store-front'])
+    this.router.navigate(['store-front'], {replaceUrl: true})
   }
-
   goToCentral() {
-    this.router.navigate(['central-ajuda'])
+    this.router.navigate(['central-ajuda'], {replaceUrl: true})
   }
   goToTermos() {
-    this.router.navigate(['termos'])
+    this.router.navigate(['termos'], {replaceUrl: true})
   }
   goToPrivacidade() {
-    this.router.navigate(['privacidade'])
+    this.router.navigate(['privacidade'], {replaceUrl: true})
   }
   goToCodigoConduta() {
-    this.router.navigate(['codigo-conduta'])
-}
-
-
+    this.router.navigate(['codigo-conduta'], {replaceUrl: true})
+  }
   ngOnInit() {
-    console.log("display name = " + this.displayName);
 
+    if(null != this.auth.currentUser) {
+      this.logged = true;
+    }
 
-    if(this.auth.currentUser) {
+    if(null != this.auth.currentUser) {
       this.displayName = this.auth.currentUser.displayName!;
       this.imageUrl = this.auth.currentUser.photoURL!;
       this.email = this.auth.currentUser.email!;
 
-   /* this.perfilFormGroup = new FormGroup({
-      name: new FormControl(this.auth.currentUser!.displayName, Validators.required),
-      email: new FormControl(this.auth.currentUser!.email, Validators.required)
-    });*/
-
     } else {
-      this.displayName = "Not Logged";
       this.imageUrl = "../assets/img/avatar.png";
+      this.email = "skateclub@email.com";
+      this.dataServiceService.getDisplayName().subscribe(displayName=> this.displayName = displayName);
+
 
     };
 
 
 
-
   }
 
-
-
-async changeImage(): Promise<void> {
-  const image = await Camera.getPhoto({
-    quality: 90,
-    allowEditing: false,
-    resultType: CameraResultType.Base64,
-    source: CameraSource.Photos
-  });
-
-
-  if(image) {
-    const loading = await this.loadingController.create();
-    await loading.present();
-
-    const result = await this.firebasestorageService.uploadPeril(image, 'users', this.auth.currentUser!.uid);
-
-    loading.dismiss();
-
-    if(result) {
-      this.message('Success', 'Success on save image');
-    } else {
-      this.message('Fail', 'Ops! There was a problem');
-    }
-  }
-}
 
   async signOut(): Promise<void> {
     await this.firebaseAuthenticationService.signOut();
     console.log("Error");
-    this.router.navigate(['loader'])
+    this.router.navigate(['loader'], {replaceUrl: true})
     .then(() =>
-    setTimeout(() => {this.router.navigate(['store-front'])}, 2000));
+    setTimeout(() => {this.router.navigate(['store-front'], {replaceUrl: true})}, 2000));
   }
 
   async message(header:string, message:string) {
@@ -128,6 +89,11 @@ async changeImage(): Promise<void> {
   }
 
   async perfil() {
-    this.router.navigateByUrl('/register', { replaceUrl: true });
+    if(null != getAuth().currentUser) {
+    this.router.navigate(['profile'], { replaceUrl: true });
+  }else {
+    this.router.navigate(['login-page'], {replaceUrl: true})
+  }
+
   }
 }

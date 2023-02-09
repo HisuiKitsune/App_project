@@ -17,7 +17,7 @@ export class FirebaseStorageService {
     return docData(contactDocRef);
   }
 
-  async uploadPeril(photo:Photo, collection:string, uuid:string): Promise<boolean> {
+  async uploadPerfil(photo:Photo, collection:string, uuid:string): Promise<boolean> {
     const path = `uploads/${collection}/${uuid}/${new Date().getTime()}.png`;
 
     const storageRef = ref(this.storage, path);
@@ -35,21 +35,4 @@ export class FirebaseStorageService {
     }
   }
 
-  async upload(photo:Photo, collection:string, uuid:string): Promise<boolean> {
-    const path = `uploads/${collection}/${uuid}/${new Date().getTime()}.png`;
-
-    const storageRef = ref(this.storage, path);
-
-    try {
-      await uploadString(storageRef, photo.base64String!, 'base64');
-      const imageUrl = await getDownloadURL(storageRef);
-      const docRef = doc(this.firestore, collection, uuid);
-
-      await updateDoc(docRef, { imageUrl });
-
-      return true;
-    } catch (error) {
-      return false;
-    }
-  }
 }

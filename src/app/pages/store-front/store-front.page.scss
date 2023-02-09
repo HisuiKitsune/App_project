@@ -94,3 +94,41 @@ ion-label {
     color: #000;
   }
 }
+
+.sales {
+  background-color: #FFFAFA;
+  margin-top: 10px;
+  height: 260px;
+  box-shadow: rgba(33, 35, 38, 0.1) 0px 10px 10px -10px;
+
+  span{
+    color: #E7AF32 ;
+  }
+  img{
+    height: 120px;
+    width: 120px;
+  }
+  ion-item{
+    width: max-content;
+  }
+  .credit{
+    margin-top: -20px;
+    font-size: small;
+    color: gray;
+  }
+  .price {
+    margin-top: -10px;
+    color: red;
+  }
+  ion-slides{
+    height: max-content;
+  }
+  ion-button {
+    width: 115px;
+    transition: all 0.25s ease;
+  }
+  ion-card, ion-item {
+    --background: snow;
+    color: #000;
+  }
+}

@@ -1,4 +1,5 @@
 <ion-content>
+  <ion-button class="back" fill="clear" (click)="goToStore()"><ion-icon name="arrow-back-sharp"></ion-icon></ion-button>
   <div class="flex-center">
   <ion-card>
     <ion-card-header color="secondary">
@@ -15,12 +16,11 @@
         <ion-label position="floating">Password</ion-label>
         <ion-input type="password" placeholder="Password" formControlName="password"></ion-input>
       </ion-item>
-      <ion-button color="danger" fill="clear" size="full"(click)="resetPassword()">Forgot password</ion-button>
-      <ion-button class="login" type="submit" class="login" size="full">Login</ion-button>
-<ion-button class="register" fill="clear" size="full" (click)="goToRegisterPage()">Register</ion-button>
+      <ion-button color="danger" fill="clear" size="block" (click)="resetPassword()">Forgot password</ion-button>
+      <ion-button class="login" type="submit" class="login" size="block">Login</ion-button>
+<ion-button class="register" fill="clear" size="block" (click)="goToRegisterPage()">Register</ion-button>
 </form>
 </ion-card-content>
   </ion-card>
-
 </div>
 </ion-content>

@@ -1,8 +1,12 @@
 <ion-header>
+  <ion-buttons slot="start">
+    <ion-back-button text=""></ion-back-button>
+  </ion-buttons>
   <ion-toolbar class="header">
     <ion-title>User registration</ion-title>
   </ion-toolbar>
 </ion-header>
+
 
 <ion-content color="light">
   <form [formGroup]="userFormGroup" (ngSubmit)="createUser(userFormGroup.value)">
