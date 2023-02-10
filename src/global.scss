@@ -31,6 +31,13 @@
   font-family: 'Roboto Condensed', sans-serif;
 }
 
+.inner-scroll {
+
+    opacity: 0.5;
+    filter: blur(1px);
+    position: absolute;
+    content: "";
+}
 
 ion-spinner {
   width: 40px !important;

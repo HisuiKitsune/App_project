@@ -1,6 +1,19 @@
 ion-menu ion-content {
-  --background: var(--ion-item-background, var(--ion-background-color, #fff));
+   --background: var(--ion-item-background, var(--ion-background-color, #fff));
 }
+
+ion-menu{
+  opacity: 0.95;
+}
+
+ion-menu::part(backdrop) {
+  background-color: #000000;
+}
+
+ion-menu::part(container) {
+  box-shadow: 4px 0px 16px #e7ae3246;
+}
+
 
 ion-menu.md ion-content {
   --padding-start: 8px;
