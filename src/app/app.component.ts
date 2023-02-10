@@ -1,11 +1,10 @@
 import { Component } from '@angular/core';
 import { Auth, getAuth } from '@angular/fire/auth';
 import { Router } from '@angular/router';
-import { AlertController, LoadingController } from '@ionic/angular';
+import { AlertController, LoadingController, MenuController } from '@ionic/angular';
 
 import { DataServiceService } from './services/data-service.service';
 import { FirebaseAuthenticationService } from './services/firebase.authentication.service';
-import { FirebaseStorageService } from './services/firebase.storage.service';
 
 @Component({
   selector: 'app-root',
@@ -17,12 +16,10 @@ export class AppComponent {
   displayName!:string;
   email!: string;
   menu!: HTMLIonMenuElement;
-  logged: boolean = false;
-
 
   public appPages = [];
   constructor(
-    private firebasestorageService: FirebaseStorageService,
+    private menuCtrl: MenuController,
     private firebaseAuthenticationService: FirebaseAuthenticationService,
     private auth: Auth,
     private router: Router,
@@ -35,47 +32,28 @@ export class AppComponent {
     this.router.navigate(['store-front'], {replaceUrl: true})
   }
   goToCentral() {
-    this.router.navigate(['central-ajuda'], {replaceUrl: true})
+    this.router.navigate(['central-ajuda'])
   }
   goToTermos() {
-    this.router.navigate(['termos'], {replaceUrl: true})
+    this.router.navigate(['termos'] )
   }
   goToPrivacidade() {
-    this.router.navigate(['privacidade'], {replaceUrl: true})
+    this.router.navigate(['privacidade'] )
   }
   goToCodigoConduta() {
-    this.router.navigate(['codigo-conduta'], {replaceUrl: true})
+    this.router.navigate(['codigo-conduta'] )
   }
   ngOnInit() {
-
-    if(null != this.auth.currentUser) {
-      this.logged = true;
-    }
-
-    if(null != this.auth.currentUser) {
-      this.displayName = this.auth.currentUser.displayName!;
-      this.imageUrl = this.auth.currentUser.photoURL!;
-      this.email = this.auth.currentUser.email!;
-
-    } else {
-      this.imageUrl = "../assets/img/avatar.png";
-      this.email = "skateclub@email.com";
-      this.dataServiceService.getDisplayName().subscribe(displayName=> this.displayName = displayName);
-
-
-    };
-
-
-
+    this.dataServiceService.getDisplayName().subscribe(displayName=> this.displayName = displayName);
+    this.dataServiceService.getEmail().subscribe(email=> this.email = email);
+    this.dataServiceService.getPhoto().subscribe(imageUrl=> this.imageUrl = imageUrl);
   }
 
 
   async signOut(): Promise<void> {
     await this.firebaseAuthenticationService.signOut();
-    console.log("Error");
     this.router.navigate(['loader'], {replaceUrl: true})
-    .then(() =>
-    setTimeout(() => {this.router.navigate(['store-front'], {replaceUrl: true})}, 2000));
+    .then(()=> setTimeout(()=> this.router.navigate(['store-front']), 2000));
   }
 
   async message(header:string, message:string) {
@@ -91,9 +69,12 @@ export class AppComponent {
   async perfil() {
     if(null != getAuth().currentUser) {
     this.router.navigate(['profile'], { replaceUrl: true });
-  }else {
+   }else {
     this.router.navigate(['login-page'], {replaceUrl: true})
+   }
   }
 
-  }
+  handleRefresh() {
+    this.ngOnInit();
+  };
 }

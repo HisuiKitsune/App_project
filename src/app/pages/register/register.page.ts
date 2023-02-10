@@ -1,6 +1,8 @@
+import { Auth } from '@angular/fire/auth';
+import { DataServiceService } from './../../services/data-service.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, FormGroupDirective, ValidatorFn, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Data, Router } from '@angular/router';
 import { AlertController, IonInput } from '@ionic/angular';
 import { CredentialModel } from 'src/app/model/user/credential.model';
 import { findCity, findNeighborhood, findNumber, findState, findStreet, findZipCode } from 'src/app/utils/address-utils';
@@ -20,8 +22,6 @@ export class RegisterPage implements OnInit {
 
   @ViewChild('autocomplete') autocomplete!: IonInput;
 
-  avatar:string = "../../assets/avatar.png";
-
   userFormGroup!: FormGroup;
   @ViewChild('contactFormGroupDirective')
   contactFormGroupDirective!: FormGroupDirective;
@@ -30,17 +30,18 @@ export class RegisterPage implements OnInit {
     private fireBaseService: FirebaseFirestoreService,
     private firebaseAuthenticationService: FirebaseAuthenticationService,
     private router: Router,
-    private alertController: AlertController) {
-
-    }
+    private alertController: AlertController,
+    private dataServiceService: DataServiceService,
+    private auth: Auth
+    ) {}
 
     ngOnInit(): void {
     this.userFormGroup = new FormGroup({
+      name: new FormControl('', Validators.required),
       email: new FormControl('', [Validators.required, Validators.email]),
       password: new FormControl('', [Validators.required, Validators.minLength(6)]),
       repeatPassword: new FormControl('', [Validators.required, Validators.minLength(6)]),
       cpf: new FormControl('', Validators.required),
-      name: new FormControl('', Validators.required),
       phone: new FormControl('', Validators.required),
         address: new FormGroup({
           postalcode: new FormControl ('', Validators.required),
@@ -51,10 +52,7 @@ export class RegisterPage implements OnInit {
           number:new FormControl ('', Validators.required),
         })
     });
-
-    /*this.userFormGroup.valueChanges.subscribe(() => this.defineAvatar());*/
   }
-
   setAddress(place: any){
     const addressForm = this.userFormGroup.get('address');
 
@@ -93,25 +91,19 @@ export class RegisterPage implements OnInit {
 
   async createUser(values: any) {
   let newUser: UserRegister = { ...values };
-  this.firebaseAuthenticationService.register(this.userFormGroup.value as CredentialModel);
-   this.fireBaseService.updateUser(newUser);
-    this.update();
-    this.userFormGroup.reset();
+  await this.firebaseAuthenticationService.register(this.userFormGroup.value as CredentialModel)
+  .then(()=> this.update());
+  this.fireBaseService.updateUser(newUser);
+  this.userFormGroup.reset();
     if(newUser) {
-      this.router.navigateByUrl('/store-front', { replaceUrl: true });
+      this.dataServiceService.setDisplayName(this.auth.currentUser!.displayName!);
+      this.router.navigate(['loader'], {replaceUrl: true})
+      .then(()=> setTimeout(()=> this.router.navigate(['profile'], {replaceUrl: true}), 2000));
     } else {
       this.showAlert('Register failed', 'Please try again');
     }
 
   }
-
-  defineAvatar() {
-    const email = this.userFormGroup.get('email');
-    if(email?.valid) {
-      this.avatar = `https://robohash.org/${email.value}?set=set3&gravatar=yes`;
-    }
-  }
-
   async update(): Promise<void> {
     const name:string = this.userFormGroup.get('name')?.value;
     this.firebaseAuthenticationService.updateProfile(name);
@@ -134,5 +126,9 @@ export class RegisterPage implements OnInit {
     });
 
     await alert.present();
+  }
+
+  goToLogin() {
+    this.router.navigate(['login-page'], {replaceUrl: true})
   }
 }

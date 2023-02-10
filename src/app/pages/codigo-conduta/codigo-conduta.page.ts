@@ -1,3 +1,4 @@
+import { MenuController } from '@ionic/angular';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CodigoCondutaPage implements OnInit {
 
-  constructor() { }
+  constructor(private menuCtrl: MenuController) { }
 
   ngOnInit() {
+    this.menuCtrl.swipeGesture(false);
+  }
+
+  ionViewWillLeave() {
+    this.menuCtrl.toggle();
+
   }
 
 }

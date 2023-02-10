@@ -27,13 +27,19 @@ export class LoginPagePage implements OnInit {
 
   ) {}
 
-  ionViewWillEnter() {
+  ionViewDidEnter(): void {
     this.menuCtrl.enable(false);
-   }
-  ionViewDidLeave() {
-    this.menuCtrl.enable(true);
   }
 
+  ionViewDidLeave(): void {
+    this.menuCtrl.enable(true);
+  }
+  goToRegisterPage() {
+    this.router.navigate(['register'], {replaceUrl: true})
+  }
+  goToStore() {
+    this.router.navigate(['store-front'], {replaceUrl: true})
+  }
   ngOnInit() {
     this.credentialFormGroup = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
@@ -41,21 +47,18 @@ export class LoginPagePage implements OnInit {
     });
   }
 
-  goToRegisterPage() {
-    this.router.navigate(['register'])
-  }
-  goToStore() {
-    this.router.navigate(['store-front'], {replaceUrl: true})
-  }
 
   async signIn(): Promise<void> {
     const user = await this.firebaseAuthenticationService.signIn(this.credentialFormGroup.getRawValue() as CredentialModel);
 
     if(user) {
       this.dataServiceService.setDisplayName(this.auth.currentUser!.displayName!);
-      this.router.navigateByUrl('/store-front', { replaceUrl: true });
+      this.dataServiceService.setEmail(this.auth.currentUser!.email!);
+      this.dataServiceService.setPhoto(this.auth.currentUser!.photoURL!);
+      this.router.navigate(['loader'], { replaceUrl: true })
+      .then(()=> setTimeout(()=>this.router.navigate(['profile']), 2000));
     } else {
-      this.showAlert('Sign-In failed', 'E-mail or password is wrong or does not exist');
+      this.showAlert('Sign-In failed', 'E-mail and/or password is wrong or does not exist');
     }
   }
 

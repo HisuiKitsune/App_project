@@ -1,3 +1,4 @@
+import { MenuController } from '@ionic/angular';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
@@ -8,12 +9,18 @@ import { Router } from '@angular/router';
 })
 export class LoaderPage implements OnInit {
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private menuCtrl:MenuController) { }
+
+  ionViewDidEnter(): void {
+    this.menuCtrl.swipeGesture(false);
+  }
+
+  ionViewDidLeave(): void {
+    this.menuCtrl.swipeGesture(true);
+  }
 
   ngOnInit() {
-    setTimeout(() => {
-      this.router.navigate(['store-front']);
-
-    }, 1000)
+    setTimeout(() => {this.router.navigate([''])}, 2000)
   }
 }
+

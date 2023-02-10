@@ -12,9 +12,9 @@ export class FirebaseStorageService {
 
   constructor(private firestore: Firestore, private storage: Storage) {}
 
-  getContactProfile(uuid: string) : Observable<DocumentData> {
-    const contactDocRef = doc(this.firestore, `contacts/${uuid}`);
-    return docData(contactDocRef);
+  getProfile(uuid: string) : Observable<DocumentData> {
+    const perfilDocRef = doc(this.firestore, `users/${uuid}`);
+    return docData(perfilDocRef);
   }
 
   async uploadPerfil(photo:Photo, collection:string, uuid:string): Promise<boolean> {
