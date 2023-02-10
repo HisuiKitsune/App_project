@@ -1,18 +1,17 @@
 .user-image {
   --size: 150px;
   margin: auto;
-  margin-top: 50px;
-  opacity: 1;
 }
 
 img {
   border-radius: 50%;
-  margin: auto;
-  opacity: 1;
+
 }
 
-.photo-wrapper {
-  justify-content: center;
+.thumbnail{
+  position: relative;
+  margin: auto;
+  margin-top: 50px;
 }
 
 .hero {
@@ -22,7 +21,6 @@ img {
   // display: flex;
   // align-items: center;
   // justify-content: center;
-  opacity: 1;
 
   &::before {
       content: "";
