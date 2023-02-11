@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Auth, getAuth } from '@angular/fire/auth';
 import { Router } from '@angular/router';
-import { AlertController, LoadingController, MenuController } from '@ionic/angular';
+import { AlertController } from '@ionic/angular';
 
 import { DataServiceService } from './services/data-service.service';
 import { FirebaseAuthenticationService } from './services/firebase.authentication.service';
@@ -16,14 +16,13 @@ export class AppComponent {
   displayName!:string;
   email!: string;
   menu!: HTMLIonMenuElement;
+  status!: boolean;
 
   public appPages = [];
   constructor(
-    private menuCtrl: MenuController,
+
     private firebaseAuthenticationService: FirebaseAuthenticationService,
-    private auth: Auth,
     private router: Router,
-    private loadingController: LoadingController,
     private alertController: AlertController,
     private dataServiceService: DataServiceService
     ) {}
@@ -47,6 +46,7 @@ export class AppComponent {
     this.dataServiceService.getDisplayName().subscribe(displayName=> this.displayName = displayName);
     this.dataServiceService.getEmail().subscribe(email=> this.email = email);
     this.dataServiceService.getPhoto().subscribe(imageUrl=> this.imageUrl = imageUrl);
+    this.dataServiceService.getLogged().subscribe(status=> this.status = status);
   }
 
 
@@ -54,6 +54,7 @@ export class AppComponent {
     await this.firebaseAuthenticationService.signOut();
     this.router.navigate(['loader'], {replaceUrl: true})
     .then(()=> setTimeout(()=> this.router.navigate(['store-front']), 2000));
+    this.dataServiceService.setLogged(false);
   }
 
   async message(header:string, message:string) {
@@ -73,8 +74,4 @@ export class AppComponent {
     this.router.navigate(['login-page'], {replaceUrl: true})
    }
   }
-
-  handleRefresh() {
-    this.ngOnInit();
-  };
 }

@@ -1,4 +1,4 @@
-import { Auth, getAuth } from '@angular/fire/auth';
+import { Auth, authState, getAuth, User } from '@angular/fire/auth';
 import { DataServiceService } from './../../services/data-service.service';
 import { FirebaseFirestoreService } from './../../services/firebase.firestore.service';
 import { Router } from '@angular/router';
@@ -20,40 +20,75 @@ export class StoreFrontPage implements OnInit {
     autoplay: true,
   };
 
-  imageUrl!:string;
-  displayName!:string;
+  user!: User;
+  imageUrl!: string;
+  displayName!: string;
   email!: string;
+  status!: boolean;
 
   constructor(
     private menuCtrl: MenuController,
     private router: Router,
-    private firebaseFirestoreService: FirebaseFirestoreService,
     private dataServiceService: DataServiceService,
-    private auth: Auth,
+    private auth: Auth
   ) {}
 
   ngOnInit() {
     this.menuCtrl.enable(true);
-    if(!getAuth().currentUser){
-      this.dataServiceService.setDisplayName("Not Logged");
-      this.dataServiceService.setPhoto('../../../assets/img/avatar.png');
-      this.dataServiceService.setEmail('skateclub@email.com');
-    } else {
-      this.displayName = this.auth.currentUser?.displayName!;
-      this.imageUrl = this.auth.currentUser?.photoURL!;
-      this.email = this.auth.currentUser?.email!;
-      this.dataServiceService.getDisplayName().subscribe(displayName=> this.displayName = displayName);
-      this.dataServiceService.getEmail().subscribe(email=> this.email = email);
-      this.dataServiceService.getPhoto().subscribe(imageUrl=> this.imageUrl = imageUrl);
-      this.dataServiceService.setPhoto(this.auth.currentUser!.photoURL!);
-      this.dataServiceService.setDisplayName(this.auth.currentUser!.displayName!);
-      this.dataServiceService.setEmail(this.auth.currentUser!.email!);
-    }
+    this.getCurrentUser()
+      .then((user: User | null) => {
+        if (!user) {
+          this.dataServiceService.setDisplayName('Not Logged');
+          this.dataServiceService.setPhoto('../../../assets/img/avatar.png');
+          this.dataServiceService.setEmail('skateclub@email.com');
+          this.dataServiceService.setLogged(false);
+        } else {
+          this.displayName = user.displayName!;
+          this.imageUrl = user.photoURL!;
+          this.email = user.email!;
+          this.dataServiceService
+            .getDisplayName()
+            .subscribe((displayName) => (this.displayName = displayName));
+          this.dataServiceService
+            .getEmail()
+            .subscribe((email) => (this.email = email));
+          this.dataServiceService
+            .getPhoto()
+            .subscribe((imageUrl) => (this.imageUrl = imageUrl));
+          this.dataServiceService
+            .getLogged()
+            .subscribe((status) => (this.status = status));
+          this.dataServiceService.setPhoto(user.photoURL!);
+          this.dataServiceService.setDisplayName(user.displayName!);
+          this.dataServiceService.setEmail(user.email!);
+          this.dataServiceService.setLogged(true);
+        }
+      })
+      .catch((error) => {
+        console.error(error);
+        return null;
+      });
   }
+
+  getCurrentUser = (): Promise<User | null> => {
+    return new Promise((resolve, reject) => {
+      const currentUser: User = getAuth().currentUser!;
+      if (currentUser) resolve(currentUser);
+      else {
+        const unsubscribe = getAuth().onAuthStateChanged(
+          (user: User | null) => {
+            unsubscribe();
+            resolve(user);
+          },
+          reject
+        );
+      }
+    });
+  };
+
   slidesDidLoad(slides: IonSlides): void {
     slides.startAutoplay();
   }
-
   goToCart() {
     this.router.navigate(['mycart']);
   }

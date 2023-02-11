@@ -55,6 +55,8 @@ export class LoginPagePage implements OnInit {
       this.dataServiceService.setDisplayName(this.auth.currentUser!.displayName!);
       this.dataServiceService.setEmail(this.auth.currentUser!.email!);
       this.dataServiceService.setPhoto(this.auth.currentUser!.photoURL!);
+      this.dataServiceService.setLogged(true);
+
       this.router.navigate(['loader'], { replaceUrl: true })
       .then(()=> setTimeout(()=>this.router.navigate(['profile']), 2000));
     } else {

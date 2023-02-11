@@ -17,7 +17,8 @@
           </ion-list-header>
           <ion-note>{{email}}</ion-note>
           <ion-list>
-            <ion-item (click)="perfil()"><ion-icon class="menuicon" name="person-sharp"></ion-icon><span>Meu perfil</span></ion-item>
+            <ion-item *ngIf="status" (click)="perfil()"><ion-icon class="menuicon" name="person-sharp"></ion-icon><span>Meu perfil</span></ion-item>
+            <ion-item *ngIf="!status" (click)="perfil()"><ion-icon class="menuicon" name="person-sharp"></ion-icon><span>Login</span></ion-item>
             <ion-item><ion-icon class="menuicon" name="star"></ion-icon><span>Favoritos</span></ion-item>
             <ion-item (click)="goToStore()"><ion-icon class="menuicon" name="storefront"></ion-icon><span>Loja</span></ion-item>
             <ion-item><ion-icon class="menuicon" name="search-sharp"></ion-icon><span>Buscar produto</span></ion-item>
@@ -28,7 +29,7 @@
             <ion-item (click)="goToTermos()"><span>Termos de Serviço</span></ion-item>
             <ion-item (click)="goToCodigoConduta()"><span>Código de Conduta</span></ion-item>
             <ion-item (click)="goToPrivacidade()"><span>Privacidade</span></ion-item>
-            <ion-item (click)="signOut()" color="danger"><ion-icon color="dark" name="log-out-outline"></ion-icon><span>Sair</span></ion-item>
+            <ion-item *ngIf="status" (click)="signOut()" color="danger"><ion-icon color="dark" name="log-out-outline"></ion-icon><span>Sair</span></ion-item>
           </ion-list>
         </ion-list>
       </ion-menu-toggle>
