@@ -1,0 +1,19 @@
+h1{
+  color: brown;
+  font-style: italic;
+  text-align: center;
+  margin-top: 20px;
+  font-size: 20px;
+}
+.add-product{
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.container{
+  background-image: url(../../assets/images/back2.png);
+  background-size: cover;
+  background-size: 100vh;
+  border: solid 2px burlywood; 
+  margin-top: 20px;
+}
