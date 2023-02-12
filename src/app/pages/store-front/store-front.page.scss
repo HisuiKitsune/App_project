@@ -1,26 +1,32 @@
 ion-toolbar {
   color: #E7AF32;
 }
+
 .slide-zoom {
-  // height:200px;
   height: 100%;
-  // overflow:hidden;
+
 }
-ion-slides {
-  height: 200px;
+
+ion-slides.slider {
+  height: 191px;
   --bullet-background: black;
   --bullet-background-active: #E7AF32;
 
+  img{
+    object-position: 0px -10px;
+  }
 }
+
+
 ion-slides.deckslide {
   height: 160px;
 }
 
 ion-item-divider {
-  --background:#FFFAFA ;
+  --background: #FFFAFA;
   --color: #E7AF32;
-    border-bottom: none;
-    border-top: 5px solid #E7AF32;
+  border-bottom: none;
+  border-top: 5px solid black;
   --padding-top: 10px;
   --padding-bottom: 10px;
   --padding-start: 10px;
@@ -40,6 +46,7 @@ div.classicshape {
   background-color: #FFFAFA;
   box-shadow: rgba(33, 35, 38, 0.1) 0px 10px 10px -10px;
 }
+
 div span {
   display: block;
   margin: auto;
@@ -63,33 +70,41 @@ ion-label {
   height: 260px;
   box-shadow: rgba(33, 35, 38, 0.1) 0px 10px 10px -10px;
 
-  span{
+  span {
     color: red;
   }
-  img{
+
+  img {
     height: 120px;
     width: 120px;
   }
-  ion-item{
+
+  ion-item {
     width: max-content;
   }
-  .credit{
+
+  .credit {
     margin-top: -20px;
     font-size: small;
     color: gray;
   }
+
   .price {
     margin-top: -10px;
     color: #E7AF32;
   }
-  ion-slides{
+
+  ion-slides {
     height: max-content;
   }
+
   ion-button {
     width: 115px;
     transition: all 0.25s ease;
   }
-  ion-card, ion-item {
+
+  ion-card,
+  ion-item {
     --background: snow;
     color: #000;
   }
@@ -101,33 +116,41 @@ ion-label {
   height: 260px;
   box-shadow: rgba(33, 35, 38, 0.1) 0px 10px 10px -10px;
 
-  span{
-    color: #E7AF32 ;
+  span {
+    color: #E7AF32;
   }
-  img{
+
+  img {
     height: 120px;
     width: 120px;
   }
-  ion-item{
+
+  ion-item {
     width: max-content;
   }
-  .credit{
+
+  .credit {
     margin-top: -20px;
     font-size: small;
     color: gray;
   }
+
   .price {
     margin-top: -10px;
     color: red;
   }
-  ion-slides{
+
+  ion-slides {
     height: max-content;
   }
+
   ion-button {
     width: 115px;
     transition: all 0.25s ease;
   }
-  ion-card, ion-item {
+
+  ion-card,
+  ion-item {
     --background: snow;
     color: #000;
   }

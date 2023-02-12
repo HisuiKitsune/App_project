@@ -1,9 +1,9 @@
-import { Auth, authState, getAuth, User } from '@angular/fire/auth';
-import { DataServiceService } from './../../services/data-service.service';
-import { FirebaseFirestoreService } from './../../services/firebase.firestore.service';
-import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
-import { IonSlides, MenuController } from '@ionic/angular';
+import { Auth, getAuth, User } from '@angular/fire/auth';
+import { Router } from '@angular/router';
+import { MenuController } from '@ionic/angular';
+
+import { DataServiceService } from './../../services/data-service.service';
 
 @Component({
   selector: 'app-store-front',
@@ -11,7 +11,6 @@ import { IonSlides, MenuController } from '@ionic/angular';
   styleUrls: ['./store-front.page.scss'],
 })
 export class StoreFrontPage implements OnInit {
-  slider: any;
   slideOptions = {
     initialSlide: 0,
     speed: 400,
@@ -69,7 +68,6 @@ export class StoreFrontPage implements OnInit {
         return null;
       });
   }
-
   getCurrentUser = (): Promise<User | null> => {
     return new Promise((resolve, reject) => {
       const currentUser: User = getAuth().currentUser!;
@@ -85,10 +83,6 @@ export class StoreFrontPage implements OnInit {
       }
     });
   };
-
-  slidesDidLoad(slides: IonSlides): void {
-    slides.startAutoplay();
-  }
   goToCart() {
     this.router.navigate(['mycart']);
   }
