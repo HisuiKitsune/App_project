@@ -8,7 +8,7 @@ img {
 
 }
 
-.thumbnail{
+.thumbnail {
   position: relative;
   margin: auto;
   margin-top: 50px;
@@ -16,17 +16,17 @@ img {
 
 .hero {
   &::before {
-      content: "";
-      background-image: url(../../../assets/img/profileBack.jpg);
-      background-size: cover;
-      height: 100vh;
-      width: 100%;
-      position: absolute;
-      top: 0px;
-      right: 0px;
-      bottom: 0px;
-      left: 0px;
-      opacity: 0.5;
+    content: "";
+    background-image: url(../../../assets/img/profileBack.jpg);
+    background-size: cover;
+    height: 100vh;
+    width: 100%;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    left: 0px;
+    opacity: 0.5;
   }
 }
 
@@ -34,11 +34,13 @@ ion-button.img {
   margin: auto;
   color: white;
 }
+
 ion-list {
   --background: none;
   background: none;
 }
-ion-button.save{
+
+ion-button.save {
   --background: #E7AF32;
   --border-radius: 16px;
   width: 95%;
@@ -50,20 +52,23 @@ ion-button.save{
   right: 0;
 
 }
-ion-toolbar{
+
+ion-toolbar {
   --background: none;
 }
+
 ion-item {
   --background: none;
   text-align: center;
   margin: auto;
   padding-right: 30px;
   padding-left: 30px;
-  --border-width: 0px ;
+  --border-width: 0px;
   --highlight-height: 3px;
   --highlight-color-focused: #E7AF32;
   --highlight-color-valid: #E7AF32;
 }
-ion-input[placeholder="Email"]{
+
+ion-input[placeholder="Email"] {
   color: gray;
 }

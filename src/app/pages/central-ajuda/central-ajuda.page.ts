@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { MenuController } from '@ionic/angular';
 import { Component, OnInit } from '@angular/core';
 
@@ -8,16 +9,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CentralAjudaPage implements OnInit {
 
-  constructor(private menuCtrl: MenuController) { }
+  constructor(private menuCtrl: MenuController, private router: Router) { }
 
   ngOnInit() {
     this.menuCtrl.swipeGesture(false);
 
   }
 
-  ionViewWillLeave() {
-    this.menuCtrl.toggle();
-
+  goToContact() {
+    this.router.navigate(['contact']);
   }
-
 }

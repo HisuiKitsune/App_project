@@ -161,7 +161,6 @@ ion-label {
   background-position: top center;
   background-size: cover;
   margin-top: 10px;
-  color: #000;
   text-align: center;
   opacity: 0.90;
   content: "";
@@ -174,6 +173,6 @@ ion-label {
   }
   ion-button {
     margin: 10px 10px 10px 0px;
-    --color: #000;
+    --color: snow;
   }
 }

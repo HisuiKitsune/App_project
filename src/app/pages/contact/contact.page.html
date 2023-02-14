@@ -1,24 +1,14 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-buttons>
-      <ion-back-button text=""></ion-back-button>
-      <ion-title>Contato</ion-title>
-    </ion-buttons>
-  </ion-toolbar>
-</ion-header>
-
-<ion-content color="dark">
-<div>
-  <h2>Dúvidas? Reclamações? Elogios? Feedbacks? Deixe um e-mail para nós e conte sua experiência!</h2>
-</div>
-
-<ion-card color="dark">
-  <ion-item color="dark">
-    <ion-label position="stacked">Assunto</ion-label>
-    <ion-input></ion-input>
+<ion-content>
+  <ion-button (click)="backtoStore()" fill="clear"><ion-icon name="chevron-back-outline"></ion-icon>Voltar</ion-button>
+<ion-card class="text">
+  <h2>Envie-nos um e-mail e deixe o seu feedback!</h2>
+  <ion-item lines="none">
+    <ion-input placeholder="Assunto" maxlength="30"></ion-input>
   </ion-item>
-  <ion-item color="dark">
-    <ion-textarea autosizedirective ></ion-textarea>
+
+  <ion-item lines="none">
+    <ion-textarea class="custom-textarea" placeholder="Digite sua mensagem..." autoGrow="true" maxlength="500"></ion-textarea>
   </ion-item>
 </ion-card>
+<ion-button class="save" type="submit" size="block">Enviar</ion-button>
 </ion-content>
