@@ -1,4 +1,3 @@
-import { DataServiceService } from './services/data-service.service';
 import { NgModule } from '@angular/core';
 import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { getAuth, provideAuth } from '@angular/fire/auth';
@@ -11,13 +10,11 @@ import { environment } from 'src/environments/environment';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-
-
-
-
+import { AutosizeDirective } from './autosize.directive';
+import { DataServiceService } from './services/data-service.service';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, AutosizeDirective, AutosizeDirective],
   imports: [
     BrowserModule,
     IonicModule.forRoot(),
@@ -25,10 +22,13 @@ import { AppComponent } from './app.component';
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideFirestore(() => getFirestore()),
     provideStorage(() => getStorage()),
-    provideAuth(() => getAuth())
+    provideAuth(() => getAuth()),
   ],
 
-  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, DataServiceService],
+  providers: [
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
+    DataServiceService,
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

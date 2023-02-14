@@ -22,7 +22,7 @@
             <ion-item><ion-icon class="menuicon" name="star"></ion-icon><span>Favoritos</span></ion-item>
             <ion-item (click)="goToStore()"><ion-icon class="menuicon" name="storefront"></ion-icon><span>Loja</span></ion-item>
             <ion-item><ion-icon class="menuicon" name="search-sharp"></ion-icon><span>Buscar produto</span></ion-item>
-            <ion-item><ion-icon class="menuicon" name="mail"></ion-icon><span>Fale conosco</span></ion-item>
+            <ion-item (click)="goToContact()" ><ion-icon class="menuicon" name="mail"></ion-icon><span>Fale conosco</span></ion-item>
           </ion-list>
           <ion-list class="submenu">
             <ion-item (click)="goToCentral()"><span>Central de Ajuda</span></ion-item>

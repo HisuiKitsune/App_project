@@ -42,6 +42,9 @@ export class AppComponent {
   goToCodigoConduta() {
     this.router.navigate(['codigo-conduta'] )
   }
+  goToContact() {
+    this.router.navigate(['contact'])
+  }
   ngOnInit() {
     this.dataServiceService.getDisplayName().subscribe(displayName=> this.displayName = displayName);
     this.dataServiceService.getEmail().subscribe(email=> this.email = email);
