@@ -10,11 +10,10 @@ import { environment } from 'src/environments/environment';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { AutosizeDirective } from './autosize.directive';
 import { DataServiceService } from './services/data-service.service';
 
 @NgModule({
-  declarations: [AppComponent, AutosizeDirective, AutosizeDirective],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     IonicModule.forRoot(),
