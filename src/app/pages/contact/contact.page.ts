@@ -12,6 +12,7 @@ export class ContactPage implements OnInit {
   constructor(private router:Router, private menuCtrl: MenuController) { }
 
   ngOnInit() {
+    this.menuCtrl.swipeGesture(false);
   }
 
   backtoStore(){

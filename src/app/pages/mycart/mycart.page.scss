@@ -2,9 +2,11 @@ ion-header {
   --backgroud: var(--ion-color-dark);
 }
 
-ion-card{
+ion-card {
   --background: snow;
+  box-shadow: rgba(33, 35, 38, 0.1) 0px 10px 10px -10px;
 }
+
 ion-card-content {
   margin-top: -7px;
 }
@@ -12,9 +14,16 @@ ion-card-content {
 ion-content {
   --background: var(--ion-color-dark);
 }
-h1, p {
+
+ion-back-button {
+  --color: #E7AF32;
+}
+
+h1,
+p {
   color: gray;
 }
+
 div {
   text-align: justify;
   margin-left: 20px;
@@ -24,32 +33,40 @@ div {
 ion-title {
   color: #E7AF32;
 }
-span{
+
+span {
   color: red;
 }
-img{
+
+img {
   height: 140px;
   width: 140px;
 }
-ion-item{
+
+ion-item {
   width: max-content;
   --background: snow;
   color: #000;
 }
-.details{
+
+.details {
   font-size: small;
   color: gray;
 }
-.availability{
+
+.availability {
   font-size: small;
   color: green;
 }
+
 .price {
   color: #E7AF32;
 }
-ion-slides{
+
+ion-slides {
   height: max-content;
 }
+
 ion-item[no-lines] {
   width: 140px;
 
@@ -59,11 +76,13 @@ ion-item[no-lines] {
     --background: #E7AF32;
 
   }
+
   ion-button.remove {
     margin-left: 15px;
     --background: #E7AF32
   }
 }
+
 ion-button.trash {
   position: relative;
   left: 70%;
@@ -72,19 +91,46 @@ ion-button.trash {
   padding: 0%;
 
 }
+
 ion-button.buy {
   --background: #E7AF32;
-  position:relative;
-  margin-top: 20px;
-  width: 99%;
+  --border-radius: 16px;
+  margin-top: 30px;
+  margin-bottom: 5px;
+
 }
+
 div.resumo {
-  background-color: snow;
-  width: 90%;
-  p{
-    color: gray;
+  margin: auto;
+  height:auto;
+  background-color: #FFFAFA;
+  box-shadow: rgba(33, 35, 38, 0.1) 0px 10px 10px -10px;
+  border-radius: 8px;
+  width: 95%;
+
+  ion-item {
+    width: 100% !important;
   }
-  span {
-    margin-left: 50px;
+
+  h2{
+    color: #E7AF32;
+  }
+  .priceEnd{
+    font-weight: bold;
+    color: green;
+  }
+}
+
+ion-item.endereco, .envio{
+  min-width: 20% !important;
+  width: 100% !important;
+  --border-width: 0px;
+  --highlight-height: 2px;
+  --color-hover: #E7AF32;
+  --highlight-color-focused: #E7AF32;
+  --highlight-color-valid: #E7AF32;
+
+  ion-label {
+    --color: #E7AF32;
   }
 }

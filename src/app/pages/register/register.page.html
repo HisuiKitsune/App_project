@@ -97,6 +97,6 @@
       <app-error-message [field]="$any(userFormGroup).get('address').get('number')" error="required" message="Number is required" ></app-error-message>
     </ion-card-content>
   </ion-card>
-  <ion-button size="full" type="submit" [disabled]="!userFormGroup.valid">Register</ion-button>
+  <ion-button expand="block" type="submit" [disabled]="!userFormGroup.valid">Register</ion-button>
 </form>
 </ion-content>

@@ -45,6 +45,12 @@ export class AppComponent {
   goToContact() {
     this.router.navigate(['contact'])
   }
+  goToFavoritos() {
+    this.router.navigate(['favoritos'])
+  }
+  goToSearch() {
+    this.router.navigate(['search'])
+  }
   ngOnInit() {
     this.dataServiceService.getDisplayName().subscribe(displayName=> this.displayName = displayName);
     this.dataServiceService.getEmail().subscribe(email=> this.email = email);

@@ -1,0 +1,54 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons>
+      <ion-back-button></ion-back-button>
+        <ion-title>Favoritos</ion-title>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="block" *ngIf="status">
+  <ion-card>
+    <ion-card-content>
+      <ion-list>
+        <ion-item lines="full">
+          <ion-thumbnail slot="start">
+            <img alt="Silhouette of mountains" src="../../../assets/img/vansshoes.jpg" />
+          </ion-thumbnail>
+          <ion-label class="ion-text-wrap">Vans High-Top</ion-label>
+          <ion-button fill="clear" color="danger"><ion-icon size="medium" color="danger" name="close-sharp"></ion-icon></ion-button>
+        </ion-item>
+
+        <ion-item lines="full">
+          <ion-thumbnail slot="start">
+            <img alt="Silhouette of mountains" src="../../../assets/img/peraltashape.jpg" />
+          </ion-thumbnail>
+          <ion-label class="ion-text-wrap">Shape Peralta Hot Rod</ion-label>
+          <ion-button fill="clear" color="danger"><ion-icon size="medium" color="danger" name="close-sharp"></ion-icon></ion-button>
+        </ion-item>
+
+        <ion-item lines="full">
+          <ion-thumbnail slot="start">
+            <img alt="Silhouette of mountains" src="../../../assets/img/blacksheep.jpg" />
+          </ion-thumbnail>
+          <ion-label class="ion-text-wrap">Skateboard Black Sheep</ion-label>
+          <ion-button fill="clear" color="danger"><ion-icon size="medium" color="danger" name="close-sharp"></ion-icon></ion-button>
+        </ion-item>
+
+        <ion-item lines="none">
+          <ion-thumbnail slot="start">
+            <img alt="Silhouette of mountains" src="../../../assets/img/capacetekraft.jpg" />
+          </ion-thumbnail>
+          <ion-label class="ion-text-wrap">Capacete Kraft</ion-label>
+          <ion-button fill="clear" color="danger"><ion-icon size="medium" color="danger" name="close-sharp"></ion-icon></ion-button>
+        </ion-item>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+</div>
+<div class="block" *ngIf="!status">
+  <h2>Faça seu login para criar sua lista de favoritos</h2>
+  <ion-button (click)="goToLogin()" class="NotLogged">Ir para Login</ion-button>
+</div>
+</ion-content>

@@ -19,9 +19,9 @@
           <ion-list>
             <ion-item *ngIf="status" (click)="perfil()"><ion-icon class="menuicon" name="person-sharp"></ion-icon><span>Meu perfil</span></ion-item>
             <ion-item *ngIf="!status" (click)="perfil()"><ion-icon class="menuicon" name="person-sharp"></ion-icon><span>Login</span></ion-item>
-            <ion-item><ion-icon class="menuicon" name="star"></ion-icon><span>Favoritos</span></ion-item>
+            <ion-item (click)="goToFavoritos()" ><ion-icon class="menuicon" name="star"></ion-icon><span>Favoritos</span></ion-item>
             <ion-item (click)="goToStore()"><ion-icon class="menuicon" name="storefront"></ion-icon><span>Loja</span></ion-item>
-            <ion-item><ion-icon class="menuicon" name="search-sharp"></ion-icon><span>Buscar produto</span></ion-item>
+            <ion-item (click)="goToSearch()"><ion-icon class="menuicon" name="search-sharp"></ion-icon><span>Buscar produto</span></ion-item>
             <ion-item (click)="goToContact()" ><ion-icon class="menuicon" name="mail"></ion-icon><span>Fale conosco</span></ion-item>
           </ion-list>
           <ion-list class="submenu">

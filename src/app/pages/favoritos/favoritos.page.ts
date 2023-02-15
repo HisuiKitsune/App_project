@@ -1,13 +1,14 @@
-import { DataServiceService } from './../../services/data-service.service';
 import { User, Auth, getAuth } from '@angular/fire/auth';
+import { Router } from '@angular/router';
+import { DataServiceService } from './../../services/data-service.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-mycart',
-  templateUrl: './mycart.page.html',
-  styleUrls: ['./mycart.page.scss'],
+  selector: 'app-favoritos',
+  templateUrl: './favoritos.page.html',
+  styleUrls: ['./favoritos.page.scss'],
 })
-export class MycartPage implements OnInit {
+export class FavoritosPage implements OnInit {
 
   status!: boolean;
   user!: User;
@@ -15,7 +16,7 @@ export class MycartPage implements OnInit {
   displayName!: string;
   email!: string;
 
-  constructor(private dataServiceService: DataServiceService, private auth: Auth) { }
+  constructor(private dataServiceService: DataServiceService, private router: Router, private auth: Auth) { }
 
   ngOnInit() {
     this.getCurrentUser()
@@ -67,5 +68,7 @@ getCurrentUser = (): Promise<User | null> => {
     }
   });
 };
-
+  goToLogin() {
+    this.router.navigate(['login-page']);
+  }
 }

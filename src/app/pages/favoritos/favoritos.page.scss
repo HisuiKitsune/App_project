@@ -1,0 +1,48 @@
+ion-title {
+  color: #E7AF32;
+}
+ion-back-button {
+  --color: #E7AF32;
+}
+
+ion-card {
+  margin: auto;
+  --background: snow;
+  box-shadow: rgba(33, 35, 38, 0.1) 0px 10px 10px -10px;
+  width: 100%;
+  .list-md{
+    padding: 0;
+  }
+}
+ion-content {
+  --background: var(--ion-color-dark);
+}
+ion-item {
+  --background: snow;
+  margin-left: -10px;
+  margin-right: -10px;
+  text-align: left;
+
+  ion-label {
+    color: #E7AF32;
+    font-weight: bold;
+  }
+}
+ion-thumbnail {
+  height: 80px;
+  width: 80px;
+}
+div.block {
+  text-align: center;
+  color: #E7AF32;
+  margin: auto;
+  height: fit-content;
+  padding: 10px;
+  margin-top: 5px;
+  // background-color: #FFFAFA;
+  // box-shadow: rgba(33, 35, 38, 0.1) 0px 10px 10px -10px;
+}
+ion-button.NotLogged{
+  --background: #E7AF32;
+  --color: #fff;
+}
