@@ -6,7 +6,9 @@ This project consist on a multiplataform app that is made using Angular + Spring
 
 Keep in mind this project is running with v6.20 Ionic, v8.19 npm, v16.1 Node and v15.1 Angular.
 Codes may change with time by variation of updates.
+Landpage was made by wordpress, the link is listed below.
 
+https://dev-senac-skate-club.pantheonsite.io/
 
 
 ## Running this project
