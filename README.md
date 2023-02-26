@@ -2,6 +2,7 @@
 
 
 This project consist on a multiplataform app that is made using Angular + Spring for web browsers and Ionic with integrated Angular plus Firebase as database and authenticator.
+Note: Enviroments and images removed from this remote repository due security measures.
 
 
 Keep in mind this project is running with v6.20 Ionic, v8.19 npm, v16.1 Node and v15.1 Angular.
